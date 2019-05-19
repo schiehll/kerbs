@@ -1,6 +1,14 @@
-import React from 'react'
-import Doc from './doc.mdx'
+import React, { Fragment } from 'react'
+import GlobalStyles from 'components/global-styles'
+import Layout from 'components/layout'
 
-const Kerbs = () => <Doc />
+const Kerbs = () => {
+  return (
+    <Fragment>
+      <GlobalStyles />
+      <Layout />
+    </Fragment>
+  )
+}
 
 export default Kerbs
