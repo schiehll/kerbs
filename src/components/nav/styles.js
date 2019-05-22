@@ -25,7 +25,7 @@ export const Item = styled.li`
         content: '';
         height: 40px;
         width: 4px;
-        background-color: white;
+        background-color: black;
         left: 0;
       }
     `}

@@ -5,9 +5,10 @@ export const Wrapper = styled.main`
 `
 
 export const Widget = styled.div`
+  overflow: hidden;
+  max-height: 100%;
   background-color: white;
   color: black;
-  padding: 10px;
+  padding: 20px;
   border-radius: 3px;
-  height: calc(100% - 20px);
 `
