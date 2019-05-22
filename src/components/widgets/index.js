@@ -24,6 +24,21 @@ const Widgets = () => {
         <S.Widget>
           <Overview />
         </S.Widget>
+        <S.Widget>
+          <Overview />
+        </S.Widget>
+
+        <S.Widget>
+          <Other />
+        </S.Widget>
+
+        <S.Widget>
+          <Other />
+        </S.Widget>
+
+        <S.Widget>
+          <Overview />
+        </S.Widget>
       </Masonry>
     </S.Wrapper>
   )
