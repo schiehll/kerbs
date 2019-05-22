@@ -1,5 +1,5 @@
 import React from 'react'
-import Masonry from 'components/masonry'
+import Grid from 'components/grid'
 import Overview from 'docs/overview.mdx'
 import Other from 'docs/other.mdx'
 
@@ -8,7 +8,7 @@ import * as S from './styles'
 const Widgets = () => {
   return (
     <S.Wrapper>
-      <Masonry gap={'20px'}>
+      <Grid gap="20px">
         <S.Widget>
           <Overview />
         </S.Widget>
@@ -39,7 +39,7 @@ const Widgets = () => {
         <S.Widget>
           <Overview />
         </S.Widget>
-      </Masonry>
+      </Grid>
     </S.Wrapper>
   )
 }
