@@ -3,7 +3,7 @@ import * as S from './styles'
 
 const items = [
   { id: 0, name: 'dashboard' },
-  { id: 1, name: 'overview' },
+  { id: 1, name: 'overview but with a big title' },
   { id: 2, name: 'other' }
 ]
 

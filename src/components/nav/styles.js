@@ -9,7 +9,7 @@ export const Nav = styled.ul`
 `
 
 export const Item = styled.li`
-  ${({ theme: { spacing, colors }, active }) => css`
+  ${({ theme: { spacing, colors, radius }, active }) => css`
     position: relative;
     padding: ${spacing.small}px 0 ${spacing.small}px ${spacing.small}px;
     cursor: pointer;
@@ -24,9 +24,10 @@ export const Item = styled.li`
       &:before {
         position: absolute;
         content: '';
-        height: 100%;
+        height: 70%;
         width: 4px;
         background-color: ${colors.gray[8]};
+        border-radius: ${radius}px;
         left: 0;
       }
     `}

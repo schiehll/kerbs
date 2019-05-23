@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Grid from 'components/grid'
 import Overview from 'docs/overview.mdx'
 import Other from 'docs/other.mdx'
@@ -7,7 +7,7 @@ import * as S from './styles'
 
 const Widgets = () => {
   return (
-    <S.Wrapper>
+    <Fragment>
       <Grid gap="20px">
         <S.Widget>
           <Overview />
@@ -40,7 +40,7 @@ const Widgets = () => {
           <Overview />
         </S.Widget>
       </Grid>
-    </S.Wrapper>
+    </Fragment>
   )
 }
 

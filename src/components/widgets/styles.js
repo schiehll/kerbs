@@ -1,11 +1,5 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.main`
-  ${({ theme: { spacing } }) => css`
-    margin-top: ${spacing.huge}px;
-  `}
-`
-
 export const Widget = styled.div`
   ${({ theme: { spacing, colors, radius } }) => css`
     overflow: hidden;
