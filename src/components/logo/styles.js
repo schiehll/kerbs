@@ -1,7 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Logo = styled.div`
-  text-transform: uppercase;
-  font-weight: bold;
-  max-width: 100%;
+  ${({ theme: { font } }) => css`
+    text-transform: uppercase;
+    font-weight: ${font.weights.bold};
+    max-width: 100%;
+  `}
 `

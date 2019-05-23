@@ -1,13 +1,17 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: ${({ gap }) => gap || `1em`};
+  ${({ theme: { spacing } }) => css`
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: ${spacing.small}px;
+  `}
 `
 
 export const Column = styled.div`
-  display: grid;
-  grid-gap: ${({ gap }) => gap || `1em`};
-  grid-auto-rows: max-content;
+  ${({ theme: { spacing } }) => css`
+    display: grid;
+    grid-gap: ${spacing.small}px;
+    grid-auto-rows: max-content;
+  `}
 `

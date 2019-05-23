@@ -1,14 +1,17 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.main`
-  margin-top: 40px;
+  ${({ theme: { spacing } }) => css`
+    margin-top: ${spacing.huge}px;
+  `}
 `
 
 export const Widget = styled.div`
-  overflow: hidden;
-  max-height: 100%;
-  background-color: white;
-  color: black;
-  padding: 20px;
-  border-radius: 3px;
+  ${({ theme: { spacing, colors, radius } }) => css`
+    overflow: hidden;
+    max-height: 100%;
+    background-color: ${colors.white};
+    padding: ${spacing.big}px;
+    border-radius: ${radius}px;
+  `}
 `
