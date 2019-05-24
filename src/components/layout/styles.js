@@ -72,7 +72,7 @@ export const SideSheet = styled.div`
 export const SideSheetButton = styled.button`
   ${({ theme: { spacing, colors } }) => css`
     border: none;
-    background: none;
+    background-color: transparent;
     color: ${colors.gray[8]};
     display: flex;
     align-items: center;
