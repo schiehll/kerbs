@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { cssElevation } from 'css-elevation'
 
 export const Label = styled.label`
   ${({ theme: { spacing } }) => css`
@@ -39,5 +40,6 @@ export const StyledInput = styled.input`
 
     background-color: ${colors.white};
     color: ${colors.gray[8]};
+    ${cssElevation({ z: 1 })}
   `};
 `

@@ -1978,6 +1978,11 @@ css-color-keywords@^1.0.0:
   resolved "https://registry.yarnpkg.com/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
   integrity sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU=
 
+css-elevation@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/css-elevation/-/css-elevation-1.0.2.tgz#8fd263c71d2ea35ee5e809bc201bc9160a61acbc"
+  integrity sha512-juUynXFWFpcjMbb5gTAFh1aRmA7h/x7imgIyE+IlKCXeE8ajeQTiB/1n/+184NoJ3yFBxr50LkjVVugLVPMF/g==
+
 css-select@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858"

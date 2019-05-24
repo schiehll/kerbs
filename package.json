@@ -28,6 +28,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "css-elevation": "^1.0.2",
     "open-color": "^1.6.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
