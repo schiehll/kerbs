@@ -1,14 +1,13 @@
 import styled, { css } from 'styled-components'
 
-export const Nav = styled.ul`
+export const Nav = styled.div`
   ${({ theme: { spacing } }) => css`
-    list-style: none;
     margin: ${spacing.huge * 2}px 0 0 0;
     padding: 0;
   `}
 `
 
-export const Item = styled.li`
+export const Item = styled.button`
   ${({ theme: { spacing, colors, radius }, active }) => css`
     position: relative;
     padding: ${spacing.small}px 0 ${spacing.small}px ${spacing.small}px;
@@ -17,6 +16,10 @@ export const Item = styled.li`
     align-items: center;
     opacity: 0.8;
     text-transform: capitalize;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
 
     ${active &&
       `
