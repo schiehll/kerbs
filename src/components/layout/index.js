@@ -4,6 +4,7 @@ import Logo from 'components/logo'
 import Nav from 'components/nav'
 import Search from 'components/search'
 import Widgets from 'components/widgets'
+import { FiMenu } from 'react-icons/fi'
 import { duration, overlayStyles, sideSheetStyles } from './transitions'
 
 import * as S from './styles'
@@ -23,7 +24,9 @@ const Layout = () => {
       </S.Sidebar>
       <S.Content>
         <S.Header>
-          <button onClick={toggleSideSheet}>open</button>
+          <S.SideSheetButton onClick={toggleSideSheet}>
+            <FiMenu />
+          </S.SideSheetButton>
           <Search />
         </S.Header>
         <Widgets />

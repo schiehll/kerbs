@@ -68,3 +68,15 @@ export const SideSheet = styled.div`
     z-index: 20;
   `}
 `
+
+export const SideSheetButton = styled.button`
+  ${({ theme: { spacing, colors } }) => css`
+    border: none;
+    background: none;
+    color: ${colors.gray[8]};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  `}
+`
