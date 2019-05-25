@@ -6,11 +6,13 @@ import Search from 'components/search'
 import Widgets from 'components/widgets'
 import getKerbs from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
+import Fuse from 'fuse.js'
 import { duration, overlayStyles, sideSheetStyles } from './transitions'
 
 import * as S from './styles'
 
 const Layout = () => {
+  const fuse = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
   const [navItems, setNavItems] = useState([
@@ -36,9 +38,24 @@ const Layout = () => {
     }
   }
 
+  const handleSearch = e => {
+    const query = e.target.value
+
+    if (!query) {
+      setKerbs(allKerbs.current)
+    } else {
+      const searchResults = fuse.current.search(query)
+      setKerbs(allKerbs.current.filter(kerb => searchResults.includes(kerb.id)))
+    }
+  }
+
   useEffect(() => {
     const loadKerbs = async () => {
       allKerbs.current = await getKerbs()
+      fuse.current = new Fuse(allKerbs.current, {
+        keys: ['meta.title', 'contents'],
+        id: 'id'
+      })
       setKerbs(allKerbs.current)
       setNavItems(navItems.concat(allKerbs.current))
     }
@@ -61,7 +78,7 @@ const Layout = () => {
           <S.SideSheetButton onClick={toggleSideSheet}>
             <FiMenu />
           </S.SideSheetButton>
-          <Search />
+          <Search onChange={handleSearch} />
         </S.Header>
         <Widgets widgets={kerbs} />
       </S.Content>

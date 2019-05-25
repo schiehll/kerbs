@@ -3,12 +3,16 @@ import { FiSearch } from 'react-icons/fi'
 
 import * as S from './styles'
 
-const Search = () => {
+const Search = ({ onChange }) => {
   return (
     <S.Label>
       <S.InputWrapper>
         <FiSearch />
-        <S.StyledInput type="search" placeholder="Search..." />
+        <S.StyledInput
+          onChange={onChange}
+          type="search"
+          placeholder="Search..."
+        />
       </S.InputWrapper>
     </S.Label>
   )
