@@ -1,25 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import * as S from './styles'
 
-const items = [
-  { id: 0, name: 'dashboard' },
-  { id: 1, name: 'overview but with a big title' },
-  { id: 2, name: 'other' }
-]
-
-const Nav = () => {
-  const [activeItem, setActiveItem] = useState(items[0]?.id)
-
+const Nav = ({ items, activeItem, onClick }) => {
   return (
     <S.Nav>
       {items.map(item => {
         return (
           <S.Item
             key={item.id}
-            onClick={() => setActiveItem(item.id)}
+            onClick={() => onClick(item.id)}
             active={item.id === activeItem}
           >
-            {item.name}
+            {item.meta.title}
           </S.Item>
         )
       })}

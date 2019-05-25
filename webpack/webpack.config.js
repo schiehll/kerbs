@@ -17,8 +17,8 @@ export default {
     rules: [
       {
         test: /\.js$/,
-        include: [resolve('src')],
-        loader: 'babel-loader'
+        include: [resolve('src'), path.resolve(process.cwd(), '.docs')],
+        use: 'babel-loader'
       },
       {
         test: /\.mdx$/,
@@ -28,7 +28,10 @@ export default {
   },
 
   resolve: {
-    modules: ['node_modules', resolve('src')]
+    modules: ['node_modules', resolve('src')],
+    alias: {
+      docs: path.resolve(process.cwd(), '.docs')
+    }
   },
 
   plugins: [
@@ -37,6 +40,10 @@ export default {
       chunksSortMode: 'none'
     })
   ],
+
+  node: {
+    fs: 'empty'
+  },
 
   stats: {
     modules: false,
