@@ -40,13 +40,20 @@ const Layout = () => {
 
   const handleSearch = e => {
     const query = e.target.value
+    let activeId = '__DASHBOARD__'
 
     if (!query) {
       setKerbs(allKerbs.current)
     } else {
       const searchResults = fuse.current.search(query)
       setKerbs(allKerbs.current.filter(kerb => searchResults.includes(kerb.id)))
+
+      if (searchResults.length === 1) {
+        activeId = searchResults[0]
+      }
     }
+
+    setActiveItem(activeId)
   }
 
   useEffect(() => {
@@ -58,8 +65,6 @@ const Layout = () => {
       })
       setKerbs(allKerbs.current)
       setNavItems(navItems.concat(allKerbs.current))
-
-      console.log('allKerbs.current', allKerbs.current)
     }
 
     loadKerbs()
