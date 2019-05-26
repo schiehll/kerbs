@@ -24,7 +24,7 @@ export const InputWrapper = styled.div`
 `
 
 export const StyledInput = styled.input`
-  ${({ theme: { spacing, colors, radius, font } }) => css`
+  ${({ theme: { spacing, colors, dark, radius, font } }) => css`
     padding: ${spacing.small}px;
     width: 100%;
     border: none;
@@ -38,8 +38,8 @@ export const StyledInput = styled.input`
       opacity: 1;
     }
 
-    background-color: ${colors.white};
-    color: ${colors.gray[8]};
+    background-color: ${dark ? colors.gray[10] : colors.white};
+    color: currentColor;
     ${cssElevation({ z: 1 })}
   `};
 `

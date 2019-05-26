@@ -1,17 +1,26 @@
-import React, { Fragment } from 'react'
-import GlobalStyles from 'styles/global'
-import theme from 'styles/theme'
+import React, { useState, useEffect } from 'react'
 import Layout from 'components/layout'
-import { ThemeProvider } from 'styled-components'
+import LightContext from 'utils/lightContext'
+
+const initialLight = JSON.parse(localStorage.getItem('light'))
 
 const Kerbs = () => {
+  const [light, setLight] = useState(
+    initialLight === null ? true : initialLight
+  )
+
+  const toggleLightSwitch = () => {
+    setLight(!light)
+  }
+
+  useEffect(() => {
+    localStorage.setItem('light', light)
+  }, [light])
+
   return (
-    <ThemeProvider theme={theme}>
-      <Fragment>
-        <GlobalStyles />
-        <Layout />
-      </Fragment>
-    </ThemeProvider>
+    <LightContext.Provider value={light}>
+      <Layout toggleLightSwitch={toggleLightSwitch} />
+    </LightContext.Provider>
   )
 }
 

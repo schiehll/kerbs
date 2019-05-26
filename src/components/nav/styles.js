@@ -20,6 +20,7 @@ export const Item = styled.button`
     background: none;
     text-align: left;
     width: 100%;
+    color: currentColor;
 
     ${active &&
       `
@@ -29,7 +30,7 @@ export const Item = styled.button`
         content: '';
         height: 70%;
         width: 4px;
-        background-color: ${colors.gray[8]};
+        background-color: currentColor;
         border-radius: ${radius}px;
         left: 0;
       }

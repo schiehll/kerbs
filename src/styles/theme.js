@@ -3,7 +3,10 @@ import colors from 'open-color/open-color.json'
 const baseSpacing = 8
 
 const theme = {
-  colors,
+  colors: {
+    ...colors,
+    gray: colors.gray.concat('#1e1e1e', '#121212')
+  },
 
   spacing: {
     base: baseSpacing,
@@ -35,7 +38,9 @@ const theme = {
     desktop: 1200,
     tablet: 768,
     phone: 420
-  }
+  },
+
+  dark: false
 }
 
 export default theme

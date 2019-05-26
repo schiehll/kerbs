@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import media from 'styles/media'
+import { Button as LightSwitch } from 'components/light-switch/styles'
 
 const sidebarSize = 180
 
@@ -31,21 +32,39 @@ export const Content = styled.div`
   `}
 `
 
+export const SideSheetButton = styled.button`
+  ${({ theme: { spacing } }) => css`
+    border: none;
+    background-color: transparent;
+    color: currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  `}
+`
+
 export const Header = styled.div`
   ${({ theme: { spacing } }) => css`
+    position: relative;
     margin-bottom: ${spacing.huge}px;
     display: flex;
     align-items: center;
 
-    > button {
+    ${SideSheetButton} {
       margin-right: ${spacing.small}px;
       ${media.greaterThan('tablet')`display: none;`}
+    }
+
+    ${LightSwitch} {
+      position: absolute;
+      right: 0;
     }
   `}
 `
 
 export const Overlay = styled.div`
-  ${({ theme: { spacing, colors } }) => css`
+  ${({ theme: { spacing } }) => css`
     background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: 100vh;
@@ -57,8 +76,8 @@ export const Overlay = styled.div`
 `
 
 export const SideSheet = styled.div`
-  ${({ theme: { spacing, colors } }) => css`
-    background-color: ${colors.white};
+  ${({ theme: { spacing, colors, dark } }) => css`
+    background-color: ${dark ? colors.gray[10] : colors.white};
     width: ${sidebarSize + spacing.big * 2}px;
     padding: ${spacing.big}px;
     height: 100vh;
@@ -66,17 +85,5 @@ export const SideSheet = styled.div`
     left: 0;
     position: fixed;
     z-index: 20;
-  `}
-`
-
-export const SideSheetButton = styled.button`
-  ${({ theme: { spacing, colors } }) => css`
-    border: none;
-    background-color: transparent;
-    color: ${colors.gray[8]};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   `}
 `

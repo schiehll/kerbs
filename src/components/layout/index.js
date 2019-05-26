@@ -1,17 +1,22 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react'
+import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
 import { Transition } from 'react-transition-group'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from 'styles/global'
+import Fuse from 'fuse.js'
 import Logo from 'components/logo'
 import Nav from 'components/nav'
 import Search from 'components/search'
 import Widgets from 'components/widgets'
+import LightSwitch from 'components/light-switch'
 import getKerbs, { config } from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
-import Fuse from 'fuse.js'
-import { duration, overlayStyles, sideSheetStyles } from './transitions'
+import LightContext from 'utils/lightContext'
+import theme from 'styles/theme'
 
+import { duration, overlayStyles, sideSheetStyles } from './transitions'
 import * as S from './styles'
 
-const Layout = () => {
+const Layout = ({ toggleLightSwitch }) => {
   const fuse = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
@@ -20,6 +25,7 @@ const Layout = () => {
   ])
   const [activeItem, setActiveItem] = useState(navItems[0].id)
   const [openSideSheet, setOpenSideSheet] = useState(false)
+  const lightContext = useContext(LightContext)
 
   const toggleSideSheet = () => {
     setOpenSideSheet(!openSideSheet)
@@ -77,46 +83,55 @@ const Layout = () => {
   }, [])
 
   return (
-    <S.Wrapper>
-      <S.Sidebar>
-        <Logo>{config?.name || 'unnamed project'}</Logo>
-        <Nav
-          items={navItems}
-          activeItem={activeItem}
-          onClick={handleNavbarItemClick}
-        />
-      </S.Sidebar>
-      <S.Content>
-        <S.Header>
-          <S.SideSheetButton onClick={toggleSideSheet}>
-            <FiMenu />
-          </S.SideSheetButton>
-          <Search onChange={handleSearch} />
-        </S.Header>
-        <Widgets widgets={kerbs} />
-      </S.Content>
-      <Transition
-        appear
-        mountOnEnter
-        unmountOnExit
-        in={openSideSheet}
-        timeout={duration}
-      >
-        {state => (
-          <Fragment>
-            <S.Overlay style={overlayStyles(state)} onClick={toggleSideSheet} />
-            <S.SideSheet style={sideSheetStyles(state)}>
-              <Logo>{config?.name || 'unnamed project'}</Logo>
-              <Nav
-                items={navItems}
-                activeItem={activeItem}
-                onClick={handleNavbarItemClick}
-              />
-            </S.SideSheet>
-          </Fragment>
-        )}
-      </Transition>
-    </S.Wrapper>
+    <ThemeProvider theme={{ ...theme, dark: !lightContext }}>
+      <Fragment>
+        <GlobalStyles />
+        <S.Wrapper>
+          <S.Sidebar>
+            <Logo>{config?.name || 'unnamed project'}</Logo>
+            <Nav
+              items={navItems}
+              activeItem={activeItem}
+              onClick={handleNavbarItemClick}
+            />
+          </S.Sidebar>
+          <S.Content>
+            <S.Header>
+              <S.SideSheetButton onClick={toggleSideSheet}>
+                <FiMenu />
+              </S.SideSheetButton>
+              <Search onChange={handleSearch} />
+              <LightSwitch light={lightContext} onClick={toggleLightSwitch} />
+            </S.Header>
+            <Widgets widgets={kerbs} />
+          </S.Content>
+          <Transition
+            appear
+            mountOnEnter
+            unmountOnExit
+            in={openSideSheet}
+            timeout={duration}
+          >
+            {state => (
+              <Fragment>
+                <S.Overlay
+                  style={overlayStyles(state)}
+                  onClick={toggleSideSheet}
+                />
+                <S.SideSheet style={sideSheetStyles(state)}>
+                  <Logo>{config?.name || 'unnamed project'}</Logo>
+                  <Nav
+                    items={navItems}
+                    activeItem={activeItem}
+                    onClick={handleNavbarItemClick}
+                  />
+                </S.SideSheet>
+              </Fragment>
+            )}
+          </Transition>
+        </S.Wrapper>
+      </Fragment>
+    </ThemeProvider>
   )
 }
 
