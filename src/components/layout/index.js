@@ -4,7 +4,7 @@ import Logo from 'components/logo'
 import Nav from 'components/nav'
 import Search from 'components/search'
 import Widgets from 'components/widgets'
-import getKerbs from 'utils/getKerbs'
+import getKerbs, { config } from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
 import Fuse from 'fuse.js'
 import { duration, overlayStyles, sideSheetStyles } from './transitions'
@@ -73,7 +73,7 @@ const Layout = () => {
   return (
     <S.Wrapper>
       <S.Sidebar>
-        <Logo>project name that's big</Logo>
+        <Logo>{config?.name || 'unnamed project'}</Logo>
         <Nav
           items={navItems}
           activeItem={activeItem}
@@ -100,7 +100,7 @@ const Layout = () => {
           <Fragment>
             <S.Overlay style={overlayStyles(state)} onClick={toggleSideSheet} />
             <S.SideSheet style={sideSheetStyles(state)}>
-              <Logo>project name that's big</Logo>
+              <Logo>{config?.name || 'unnamed project'}</Logo>
               <Nav
                 items={navItems}
                 activeItem={activeItem}

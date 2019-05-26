@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
+const kerbsPath = path.resolve(process.cwd(), '.kerbs')
 
 export default {
   entry: [resolve('src/index')],
@@ -20,13 +21,13 @@ export default {
         use: {
           loader: path.resolve(__dirname, 'addDependencyLoader.js'),
           options: {
-            file: resolve(path.resolve(process.cwd(), '.docs'))
+            file: kerbsPath
           }
         }
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), path.resolve(process.cwd(), '.docs')],
+        include: [resolve('src'), kerbsPath],
         use: 'babel-loader'
       },
       {
@@ -39,7 +40,7 @@ export default {
   resolve: {
     modules: ['node_modules', resolve('src')],
     alias: {
-      docs: path.resolve(process.cwd(), '.docs')
+      kerbs: kerbsPath
     }
   },
 

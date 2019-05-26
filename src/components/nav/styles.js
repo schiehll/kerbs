@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const Nav = styled.div`
   ${({ theme: { spacing } }) => css`
-    margin: ${spacing.huge * 2}px 0 0 0;
+    margin-top: ${spacing.huge * 4}px;
     padding: 0;
   `}
 `
