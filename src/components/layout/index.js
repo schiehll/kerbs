@@ -64,7 +64,13 @@ const Layout = () => {
         id: 'id'
       })
       setKerbs(allKerbs.current)
-      setNavItems(navItems.concat(allKerbs.current))
+      setNavItems(
+        navItems.concat(
+          allKerbs.current.sort(
+            (a, b) => (a?.meta?.order || 0) - b?.meta?.order
+          )
+        )
+      )
     }
 
     loadKerbs()
