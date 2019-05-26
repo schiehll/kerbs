@@ -16,6 +16,15 @@ export default {
   module: {
     rules: [
       {
+        test: resolve('src/utils/getKerbs.js'),
+        use: {
+          loader: path.resolve(__dirname, 'addDependencyLoader.js'),
+          options: {
+            file: resolve(path.resolve(process.cwd(), '.docs'))
+          }
+        }
+      },
+      {
         test: /\.js$/,
         include: [resolve('src'), path.resolve(process.cwd(), '.docs')],
         use: 'babel-loader'

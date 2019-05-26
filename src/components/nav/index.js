@@ -12,7 +12,7 @@ const Nav = ({ items, activeItem, onClick }) => {
             onClick={() => onClick(item.id)}
             active={item.id === activeItem}
           >
-            {item.meta.title}
+            {item?.meta?.title || 'untitled'}
           </S.Item>
         )
       })}
