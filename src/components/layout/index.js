@@ -58,6 +58,8 @@ const Layout = () => {
       })
       setKerbs(allKerbs.current)
       setNavItems(navItems.concat(allKerbs.current))
+
+      console.log('allKerbs.current', allKerbs.current)
     }
 
     loadKerbs()

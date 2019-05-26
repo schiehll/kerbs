@@ -8,9 +8,12 @@ const allKerbs = preval`
   const kerbs = fs.readdirSync(path.resolve(process.cwd(), '.docs'))
 
   module.exports = kerbs.map(kerb => {
+    const filePath = path.resolve(process.cwd(), '.docs', kerb)
+
     return {
       path: kerb,
-      contents: fs.readFileSync(path.resolve(process.cwd(), '.docs', kerb), 'utf8')
+      contents: fs.readFileSync(filePath, 'utf8'),
+      stats: fs.statSync(filePath)
     }
   })
 `
@@ -24,7 +27,8 @@ const getKerbs = () => {
         id: nanoid(),
         kerb: comp.default,
         meta: comp.meta,
-        contents: kerb.contents
+        contents: kerb.contents,
+        stats: kerb.stats
       }
     })
   )

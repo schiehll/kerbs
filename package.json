@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "css-elevation": "^1.0.2",
+    "dayjs": "^1.8.14",
     "fuse.js": "^3.4.4",
     "nanoid": "^2.0.3",
     "open-color": "^1.6.3",
