@@ -1,19 +1,16 @@
 import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
-import { Transition } from 'react-transition-group'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
 import Fuse from 'fuse.js'
-import Logo from 'components/shell/logo'
-import Nav from 'components/shell/nav'
 import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
+import Sidebar from 'components/shell/sidebar'
 import LightSwitch from 'components/shell/light-switch'
-import getKerbs, { config } from 'utils/getKerbs'
+import getKerbs from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
 import LightContext from 'utils/lightContext'
 import theme from 'styles/theme'
 
-import { duration, overlayStyles, sideSheetStyles } from './transitions'
 import * as S from './styles'
 
 const Layout = ({ toggleLightSwitch }) => {
@@ -87,14 +84,13 @@ const Layout = ({ toggleLightSwitch }) => {
       <Fragment>
         <GlobalStyles />
         <S.Wrapper>
-          <S.Sidebar>
-            <Logo>{config?.name || 'unnamed project'}</Logo>
-            <Nav
-              items={navItems}
-              activeItem={activeItem}
-              onClick={handleNavbarItemClick}
-            />
-          </S.Sidebar>
+          <Sidebar
+            items={navItems}
+            activeItem={activeItem}
+            onClick={handleNavbarItemClick}
+            shouldShowSideSheet={openSideSheet}
+            toggleSideSheet={toggleSideSheet}
+          />
           <S.Content>
             <S.Header>
               <S.SideSheetButton onClick={toggleSideSheet}>
@@ -105,30 +101,6 @@ const Layout = ({ toggleLightSwitch }) => {
             </S.Header>
             <Widgets widgets={kerbs} />
           </S.Content>
-          <Transition
-            appear
-            mountOnEnter
-            unmountOnExit
-            in={openSideSheet}
-            timeout={duration}
-          >
-            {state => (
-              <Fragment>
-                <S.Overlay
-                  style={overlayStyles(state)}
-                  onClick={toggleSideSheet}
-                />
-                <S.SideSheet style={sideSheetStyles(state)}>
-                  <Logo>{config?.name || 'unnamed project'}</Logo>
-                  <Nav
-                    items={navItems}
-                    activeItem={activeItem}
-                    onClick={handleNavbarItemClick}
-                  />
-                </S.SideSheet>
-              </Fragment>
-            )}
-          </Transition>
         </S.Wrapper>
       </Fragment>
     </ThemeProvider>
