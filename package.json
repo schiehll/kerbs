@@ -1,7 +1,10 @@
 {
   "name": "kerbs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/cli/index.js",
+  "bin": {
+    "kerbs": "./src/cli/index.js"
+  },
   "license": "MIT",
   "scripts": {
     "build": "node -r @babel/register node_modules/.bin/webpack --mode production --config webpack/webpack.config.js",
