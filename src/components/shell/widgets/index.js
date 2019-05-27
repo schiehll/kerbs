@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from 'components/grid'
+import Grid from 'components/shell/grid'
 import { FiClock } from 'react-icons/fi'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'

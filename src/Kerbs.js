@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Layout from 'components/layout'
+import Layout from 'components/shell/layout'
 import LightContext from 'utils/lightContext'
 
 const initialLight = JSON.parse(localStorage.getItem('light'))

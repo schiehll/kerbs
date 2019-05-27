@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import media from 'styles/media'
-import { Button as LightSwitch } from 'components/light-switch/styles'
+import { Button as LightSwitch } from 'components/shell/light-switch/styles'
 
 const sidebarSize = 180
 
