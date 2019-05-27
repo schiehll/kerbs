@@ -1,7 +1,6 @@
 import nanoid from 'nanoid'
 
 const allKerbs = preval`
-  const React = require('react')
   const fs = require('fs')
   const path = require('path')
 
