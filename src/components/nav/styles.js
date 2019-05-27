@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components'
 
 export const Nav = styled.div`
   ${({ theme: { spacing } }) => css`
-    margin-top: ${spacing.huge * 4}px;
-    padding: 0;
+    margin: ${spacing.huge * 4}px 0 ${spacing.huge}px 0;
+    padding: ${spacing.base / 2}px;
+    overflow-y: auto;
+    max-height: calc(100vh - ${spacing.huge * 8}px);
   `}
 `
 
