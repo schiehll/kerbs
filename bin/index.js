@@ -11,9 +11,19 @@ var _shelljs = _interopRequireDefault(require("shelljs"));
 
 var _enquirer = require("enquirer");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _chalk = _interopRequireDefault(require("chalk"));
 
-const rootPath = _path.default.resolve(__dirname, '../');
+var _portfinder = _interopRequireDefault(require("portfinder"));
+
+var _webpack = _interopRequireDefault(require("webpack"));
+
+var _webpackDevServer = _interopRequireDefault(require("webpack-dev-server"));
+
+var _webpackDevServerUtils = require("../webpack/webpackDevServerUtils");
+
+var _webpack2 = _interopRequireDefault(require("../webpack/webpack.dev"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _commander.default.command('init').description('initialize kerbs').action(async () => {
   const response = await (0, _enquirer.prompt)({
@@ -32,7 +42,7 @@ _commander.default.command('init').description('initialize kerbs').action(async 
   }
 
   if (_fs.default.existsSync(configPath)) {
-    console.log('.kerbs/.kerbsrc.json already exists');
+    console.log(_chalk.default.yellow`Looks like it's already initialized, as .kerbs/.kerbsrc.json already exists.`);
   } else {
     _fs.default.writeFileSync(configPath, JSON.stringify({
       name: response.PROJECT_NAME
@@ -41,17 +51,48 @@ _commander.default.command('init').description('initialize kerbs').action(async 
     _shelljs.default.cp('-r', _path.default.resolve(__dirname, '../src/templates/default/*'), kerbsPath);
 
     _shelljs.default.touch('-c', _fs.default.readdirSync(kerbsPath));
+
+    console.log(_chalk.default.green`Done! Check the .kerbs folder to start writing your docs.`);
   }
 });
 
-_commander.default.command('dev').description('start dev server').action(() => {
-  const devServerPath = _path.default.resolve(rootPath, 'node_modules/.bin/webpack-dev-server');
+_commander.default.command('dev').description('start dev server').action(async () => {
+  const port = await _portfinder.default.getPortPromise();
+  const HOST = '0.0.0.0';
+  const urls = (0, _webpackDevServerUtils.prepareUrls)('http', HOST, port);
+  const devSocket = {
+    warnings: warnings => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+    errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
+  };
+  const compiler = (0, _webpackDevServerUtils.createCompiler)({
+    appName: 'kerbs',
+    devSocket,
+    urls,
+    useTypeScript: false,
+    webpack: _webpack.default,
+    config: _webpack2.default
+  });
+  const devServer = new _webpackDevServer.default(compiler, {
+    compress: true,
+    clientLogLevel: 'none',
+    hot: true,
+    publicPath: '/',
+    quiet: true,
+    host: HOST
+  });
+  devServer.listen(port, HOST, err => {
+    if (err) {
+      return console.log(err);
+    }
 
-  const esmPath = _path.default.resolve(rootPath, './node_modules/esm');
-
-  const webpackPath = _path.default.resolve(rootPath, 'webpack');
-
-  _shelljs.default.exec(`node -r ${esmPath} ${devServerPath} --hot --config ${webpackPath}/webpack.dev.js`);
+    console.log(_chalk.default.cyan('Starting the development server...\n'));
+  });
+  ['SIGINT', 'SIGTERM'].forEach(sig => {
+    process.on(sig, () => {
+      devServer.close();
+      process.exit();
+    });
+  });
 });
 
 _commander.default.parse(process.argv);

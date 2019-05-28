@@ -1,5 +1,5 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
 const resolveNodeModule = filePath => {
@@ -26,7 +26,7 @@ const babelLoaderOptions = {
   ]
 }
 
-export default {
+module.exports = {
   entry: [resolve('src/index')],
 
   output: {

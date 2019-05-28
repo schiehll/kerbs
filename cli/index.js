@@ -1,12 +1,15 @@
 #!/usr/bin/env node
-
 import path from 'path'
 import fs from 'fs'
 import program from 'commander'
 import shell from 'shelljs'
 import { prompt } from 'enquirer'
-
-const rootPath = path.resolve(__dirname, '../')
+import chalk from 'chalk'
+import portfinder from 'portfinder'
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
+import { prepareUrls, createCompiler } from '../webpack/webpackDevServerUtils'
+import config from '../webpack/webpack.dev'
 
 program
   .command('init')
@@ -27,7 +30,9 @@ program
     }
 
     if (fs.existsSync(configPath)) {
-      console.log('.kerbs/.kerbsrc.json already exists')
+      console.log(
+        chalk.yellow`Looks like it's already initialized, as .kerbs/.kerbsrc.json already exists.`
+      )
     } else {
       fs.writeFileSync(
         configPath,
@@ -41,24 +46,54 @@ program
         kerbsPath
       )
       shell.touch('-c', fs.readdirSync(kerbsPath))
+      console.log(
+        chalk.green`Done! Check the .kerbs folder to start writing your docs.`
+      )
     }
   })
 
 program
   .command('dev')
   .description('start dev server')
-  .action(() => {
-    const devServerPath = path.resolve(
-      rootPath,
-      'node_modules/.bin/webpack-dev-server'
-    )
+  .action(async () => {
+    const port = await portfinder.getPortPromise()
+    const HOST = '0.0.0.0'
+    const urls = prepareUrls('http', HOST, port)
+    const devSocket = {
+      warnings: warnings =>
+        devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+      errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
+    }
+    const compiler = createCompiler({
+      appName: 'kerbs',
+      devSocket,
+      urls,
+      useTypeScript: false,
+      webpack,
+      config
+    })
+    const devServer = new WebpackDevServer(compiler, {
+      compress: true,
+      clientLogLevel: 'none',
+      hot: true,
+      publicPath: '/',
+      quiet: true,
+      host: HOST
+    })
 
-    const esmPath = path.resolve(rootPath, './node_modules/esm')
-    const webpackPath = path.resolve(rootPath, 'webpack')
+    devServer.listen(port, HOST, err => {
+      if (err) {
+        return console.log(err)
+      }
 
-    shell.exec(
-      `node -r ${esmPath} ${devServerPath} --hot --config ${webpackPath}/webpack.dev.js`
-    )
+      console.log(chalk.cyan('Starting the development server...\n'))
+    })
+    ;['SIGINT', 'SIGTERM'].forEach(sig => {
+      process.on(sig, () => {
+        devServer.close()
+        process.exit()
+      })
+    })
   })
 
 program.parse(process.argv)
