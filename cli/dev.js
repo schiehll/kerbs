@@ -28,7 +28,8 @@ export default async () => {
     hot: true,
     publicPath: '/',
     quiet: true,
-    host: HOST
+    host: HOST,
+    historyApiFallback: true
   })
 
   devServer.listen(port, HOST, err => {
