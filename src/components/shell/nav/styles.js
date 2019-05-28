@@ -9,6 +9,18 @@ export const Nav = styled.div`
   `}
 `
 
+const activeIndicator = radius => `
+  &:before {
+    position: absolute;
+    content: '';
+    height: 70%;
+    width: 4px;
+    background-color: currentColor;
+    border-radius: ${radius}px;
+    left: 0;
+  }
+`
+
 export const Item = styled.button`
   ${({ theme: { spacing, colors, radius }, active }) => css`
     position: relative;
@@ -23,23 +35,20 @@ export const Item = styled.button`
     text-align: left;
     width: 100%;
     color: currentColor;
+    outline: none;
 
     ${active &&
       `
       opacity: 1;
-      &:before {
-        position: absolute;
-        content: '';
-        height: 70%;
-        width: 4px;
-        background-color: currentColor;
-        border-radius: ${radius}px;
-        left: 0;
-      }
+      ${activeIndicator(radius)}
     `}
 
     &:hover {
       opacity: 1;
+    }
+
+    &:focus-within {
+      ${activeIndicator(radius)}
     }
   `}
 `

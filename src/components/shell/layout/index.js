@@ -14,6 +14,7 @@ import theme from 'styles/theme'
 import * as S from './styles'
 
 const Layout = ({ toggleLightSwitch }) => {
+  const sideSheetRef = useRef(null)
   const fuse = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
@@ -79,12 +80,19 @@ const Layout = ({ toggleLightSwitch }) => {
     loadKerbs()
   }, [])
 
+  useEffect(() => {
+    if (openSideSheet && sideSheetRef.current) {
+      sideSheetRef.current.focus()
+    }
+  }, [openSideSheet])
+
   return (
     <ThemeProvider theme={{ ...theme, dark: !lightContext }}>
       <Fragment>
         <GlobalStyles />
         <S.Wrapper>
           <Sidebar
+            ref={sideSheetRef}
             items={navItems}
             activeItem={activeItem}
             onClick={handleNavbarItemClick}
