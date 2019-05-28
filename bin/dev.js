@@ -48,7 +48,7 @@ var _default = async () => {
       return console.log(err);
     }
 
-    console.log(_chalk.default.cyan('Starting the development server...\n'));
+    console.log(_chalk.default.cyan('Starting kerbs development server...\n'));
   });
   ['SIGINT', 'SIGTERM'].forEach(sig => {
     process.on(sig, () => {

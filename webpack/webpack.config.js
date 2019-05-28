@@ -5,7 +5,7 @@ const resolve = filePath => path.resolve(__dirname, '../', filePath)
 const resolveNodeModule = filePath => {
   return path.resolve(__dirname, '../node_modules', filePath)
 }
-const kerbsPath = path.resolve(process.cwd(), '.kerbs')
+const kerbsPath = path.resolve(process.cwd(), 'kerbs')
 
 const babelLoaderOptions = {
   babelrc: false,
@@ -30,7 +30,7 @@ module.exports = {
   entry: [resolve('src/index')],
 
   output: {
-    path: resolve('public'),
+    path: resolve(path.resolve(kerbsPath, 'public')),
     publicPath: '/',
     filename: 'static/[name].[hash].js',
     chunkFilename: 'static/[name].[hash].chunk.js'
@@ -38,15 +38,6 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        test: resolve('src/utils/getKerbs.js'),
-        use: {
-          loader: path.resolve(__dirname, 'addDependencyLoader.js'),
-          options: {
-            file: kerbsPath
-          }
-        }
-      },
       {
         test: /\.js$/,
         include: [resolve('src'), kerbsPath],
@@ -81,10 +72,6 @@ module.exports = {
       chunksSortMode: 'none'
     })
   ],
-
-  node: {
-    fs: 'empty'
-  },
 
   stats: {
     modules: false,

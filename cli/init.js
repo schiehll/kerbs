@@ -12,7 +12,7 @@ export default async () => {
     initial: 'Unnamed Project'
   })
 
-  const kerbsPath = path.resolve(process.cwd(), '.kerbs')
+  const kerbsPath = path.resolve(process.cwd(), 'kerbs')
   const configPath = path.resolve(kerbsPath, '.kerbsrc.json')
 
   if (!fs.existsSync(kerbsPath)) {
@@ -21,7 +21,7 @@ export default async () => {
 
   if (fs.existsSync(configPath)) {
     console.log(
-      chalk.yellow`Looks like it's already initialized, as .kerbs/.kerbsrc.json already exists.`
+      chalk.yellow`Looks like it's already initialized, as kerbs/.kerbsrc.json already exists.`
     )
   } else {
     fs.writeFileSync(
@@ -37,7 +37,7 @@ export default async () => {
     )
     shell.touch('-c', fs.readdirSync(kerbsPath))
     console.log(
-      chalk.green`Done! Check the .kerbs folder to start writing your docs.`
+      chalk.green`Done! Check the kerbs folder to start writing your docs.`
     )
   }
 }
