@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
 import { ThemeProvider } from 'styled-components'
+import { createBrowserHistory } from 'history'
+import queryString from 'query-string'
 import GlobalStyles from 'styles/global'
 import Fuse from 'fuse.js'
 import Search from 'components/shell/search'
@@ -13,15 +15,17 @@ import theme from 'styles/theme'
 
 import * as S from './styles'
 
+const history = createBrowserHistory()
+
 const Layout = ({ toggleLightSwitch }) => {
   const sideSheetRef = useRef(null)
   const fuse = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
   const [navItems, setNavItems] = useState([
-    { id: '__DASHBOARD__', meta: { title: 'dashboard' } }
+    { id: '__DASHBOARD__', meta: { title: 'dashboard' }, slug: 'dashboard' }
   ])
-  const [activeItem, setActiveItem] = useState(navItems[0].id)
+  const [activeItem, setActiveItem] = useState(null)
   const [openSideSheet, setOpenSideSheet] = useState(false)
   const lightContext = useContext(LightContext)
 
@@ -67,7 +71,7 @@ const Layout = ({ toggleLightSwitch }) => {
         keys: ['meta.title', 'contents'],
         id: 'id'
       })
-      setKerbs(allKerbs.current)
+
       setNavItems(
         navItems.concat(
           allKerbs.current.sort(
@@ -75,6 +79,22 @@ const Layout = ({ toggleLightSwitch }) => {
           )
         )
       )
+
+      const { kerb } = queryString.parse(history.location.search)
+      let initialActiveItem = navItems[0].id
+      let initialKerbs = allKerbs.current
+
+      if (kerb) {
+        const filteredKerbs = allKerbs.current.filter(k => k.slug === kerb)
+
+        if (filteredKerbs.length > 0) {
+          initialActiveItem = allKerbs.current.find(k => k.slug === kerb).id
+          initialKerbs = filteredKerbs
+        }
+      }
+
+      setKerbs(initialKerbs)
+      setActiveItem(initialActiveItem)
     }
 
     loadKerbs()
@@ -85,6 +105,15 @@ const Layout = ({ toggleLightSwitch }) => {
       sideSheetRef.current.focus()
     }
   }, [openSideSheet])
+
+  useEffect(() => {
+    if (activeItem) {
+      const slug = navItems.find(kerb => kerb.id === activeItem)?.slug
+      if (slug) {
+        history.push(slug === 'dashboard' ? '/' : `?kerb=${slug}`)
+      }
+    }
+  }, [activeItem])
 
   return (
     <ThemeProvider theme={{ ...theme, dark: !lightContext }}>
