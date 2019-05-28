@@ -30,7 +30,7 @@ module.exports = {
   entry: [resolve('src/index')],
 
   output: {
-    path: resolve(path.resolve(kerbsPath, 'public')),
+    path: path.resolve(process.cwd(), 'kerbs_public'),
     publicPath: '/',
     filename: 'static/[name].[hash].js',
     chunkFilename: 'static/[name].[hash].chunk.js'

@@ -5,7 +5,6 @@
   "bin": "./bin/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "node node_modules/.bin/webpack --mode production --config webpack/webpack.config.js",
     "build:cli": "babel cli --out-dir bin && chmod +x bin/index.js"
   },
   "devDependencies": {
