@@ -28,12 +28,10 @@ var _default = async () => {
     errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
   };
   const compiler = (0, _webpackDevServerUtils.createCompiler)({
-    appName: 'kerbs',
+    config: _webpack2.default,
     devSocket,
     urls,
-    useTypeScript: false,
-    webpack: _webpack.default,
-    config: _webpack2.default
+    webpack: _webpack.default
   });
   const devServer = new _webpackDevServer.default(compiler, {
     compress: true,

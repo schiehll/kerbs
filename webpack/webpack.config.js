@@ -1,12 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const highlight = require('remark-highlight.js')
+const PATHS = require('./paths')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
 const resolveNodeModule = filePath => {
   return path.resolve(__dirname, '../node_modules', filePath)
 }
-const kerbsPath = path.resolve(process.cwd(), 'kerbs')
 
 const babelLoaderOptions = {
   babelrc: false,
@@ -31,7 +31,7 @@ module.exports = {
   entry: [resolve('src/index')],
 
   output: {
-    path: path.resolve(process.cwd(), 'kerbs_public'),
+    path: PATHS.public,
     publicPath: '/',
     filename: 'static/[name].[hash].js',
     chunkFilename: 'static/[name].[hash].chunk.js'
@@ -41,7 +41,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: [resolve('src'), kerbsPath],
+        include: [resolve('src'), PATHS.docs],
         use: {
           loader: resolveNodeModule('babel-loader'),
           options: babelLoaderOptions
@@ -75,7 +75,7 @@ module.exports = {
   resolve: {
     modules: [resolve('node_modules'), resolve('src')],
     alias: {
-      kerbs: kerbsPath
+      kerbs: PATHS.docs
     }
   },
 

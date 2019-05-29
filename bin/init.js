@@ -15,6 +15,8 @@ var _enquirer = require("enquirer");
 
 var _chalk = _interopRequireDefault(require("chalk"));
 
+var _paths = _interopRequireDefault(require("../webpack/paths"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
@@ -25,26 +27,26 @@ var _default = async () => {
     initial: 'Unnamed Project'
   });
 
-  const kerbsPath = _path.default.resolve(process.cwd(), 'kerbs');
-
-  const configPath = _path.default.resolve(kerbsPath, '.kerbsrc.json');
-
-  if (!_fs.default.existsSync(kerbsPath)) {
-    _fs.default.mkdirSync(kerbsPath);
-  }
+  const configPath = _path.default.resolve(process.cwd(), '.kerbsrc.json');
 
   if (_fs.default.existsSync(configPath)) {
-    console.log(_chalk.default.yellow`Looks like it's already initialized, as kerbs/.kerbsrc.json already exists.`);
+    console.log(_chalk.default.yellow`Found a .kerbsrc.json file, will be using it.`);
   } else {
     _fs.default.writeFileSync(configPath, JSON.stringify({
       name: response.PROJECT_NAME
     }, null, 2), 'utf8');
+  }
 
-    _shelljs.default.cp('-r', _path.default.resolve(__dirname, '../src/templates/default/*'), kerbsPath);
+  if (!_fs.default.existsSync(_paths.default.docs)) {
+    _fs.default.mkdirSync(_paths.default.docs);
 
-    _shelljs.default.touch('-c', _fs.default.readdirSync(kerbsPath));
+    _shelljs.default.cp('-r', _path.default.resolve(__dirname, '../src/templates/default/*'), _paths.default.docs);
 
-    console.log(_chalk.default.green`Done! Check the kerbs folder to start writing your docs.`);
+    _shelljs.default.touch('-c', _fs.default.readdirSync(_paths.default.docs));
+
+    console.log(_chalk.default.green(`Done! Check the ${_chalk.default.bold(_paths.default.docs)} folder to start writing your docs.`));
+  } else {
+    console.log(_chalk.default.yellow(`Looks like it's already initialized. Delete the ${_chalk.default.bold(_paths.default.docs)} folder and try again.`));
   }
 };
 

@@ -15,12 +15,10 @@ export default async () => {
     errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
   }
   const compiler = createCompiler({
-    appName: 'kerbs',
+    config,
     devSocket,
     urls,
-    useTypeScript: false,
-    webpack,
-    config
+    webpack
   })
   const devServer = new WebpackDevServer(compiler, {
     compress: true,

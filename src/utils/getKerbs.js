@@ -4,11 +4,12 @@ import slugify from '@sindresorhus/slugify'
 const allKerbs = preval`
   const fs = require('fs')
   const path = require('path')
+  const PATHS = require('../../webpack/paths')
 
-  const kerbs = fs.readdirSync(path.resolve(process.cwd(), 'kerbs'))
+  const kerbs = fs.readdirSync(PATHS.docs)
 
   module.exports = kerbs.filter(kerb => kerb.endsWith('.mdx')).map(kerb => {
-    const filePath = path.resolve(process.cwd(), 'kerbs', kerb)
+    const filePath = path.resolve(PATHS.docs, kerb)
 
     return {
       path: kerb,
@@ -22,7 +23,7 @@ export const config = preval`
   const fs = require('fs')
   const path = require('path')
 
-  module.exports = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'kerbs/.kerbsrc.json')))
+  module.exports = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), '.kerbsrc.json')))
 `
 
 const getKerbs = () => {
