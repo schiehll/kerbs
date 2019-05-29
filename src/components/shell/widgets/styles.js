@@ -8,7 +8,11 @@ export const Widget = styled.div`
     background-color: ${dark ? colors.gray[10] : colors.white};
     padding: 0;
     border-radius: ${radius}px;
-    line-height: ${spacing.medium}px;
+
+    p {
+      line-height: ${spacing.medium}px;
+    }
+
     ${cssElevation({ z: 1 })}
   `}
 `

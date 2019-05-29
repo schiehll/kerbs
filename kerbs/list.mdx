@@ -1,0 +1,30 @@
+import List from 'components/list'
+import ListItem from 'components/list-item'
+import LinkListItem from 'components/link-list-item'
+
+export const meta = {
+  title: 'list',
+  order: 2
+}
+
+# List
+
+<List>
+  <LinkListItem to="yarn" description="To manage deps" />
+  <LinkListItem
+    to="github"
+    name="React alert"
+    description="To show alerts with a very big description that would force us to break this in multiple lines"
+    href="https://github.com/schiehll/react-alert"
+  />
+  <LinkListItem
+    to="github"
+    description="To host the repo"
+    href="http://google.com"
+  />
+  <LinkListItem
+    name="ueh"
+    description="To host the repo"
+    href="http://google.com"
+  />
+</List>

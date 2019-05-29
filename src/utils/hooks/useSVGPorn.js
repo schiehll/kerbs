@@ -16,7 +16,9 @@ const useSVGPorn = name => {
       }
     }
 
-    getSVGPorn()
+    if (name) {
+      getSVGPorn()
+    }
   }, [name])
 
   useEffect(() => {
