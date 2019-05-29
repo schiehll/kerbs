@@ -4,8 +4,10 @@ import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import { prepareUrls, createCompiler } from '../webpack/webpackDevServerUtils'
 import config from '../webpack/webpack.dev'
+import loadSVGLogos from './loadSVGLogos'
 
 export default async () => {
+  await loadSVGLogos()
   const port = await portfinder.getPortPromise()
   const HOST = '0.0.0.0'
   const urls = prepareUrls('http', HOST, port)

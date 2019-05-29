@@ -1,9 +1,8 @@
 import React from 'react'
-
-import * as S from './styles'
+import Grid from 'components/shell/grid'
 
 const List = ({ children }) => {
-  return <S.List>{children}</S.List>
+  return <Grid gap="20px">{children}</Grid>
 }
 
 export default List

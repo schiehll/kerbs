@@ -1,0 +1,15 @@
+import FileTree from 'components/file-tree'
+
+export const meta = {
+  title: 'Tree',
+  order: -1
+}
+
+# Tree
+
+<FileTree
+  files={[
+    { name: 'src', description: 'The source folder', isFolder: true },
+    { name: 'file.js', description: 'The file' }
+  ]}
+/>

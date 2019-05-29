@@ -1,15 +1,23 @@
 import React from 'react'
 import * as S from './styles'
 
-const ListItem = ({ name, img, description, icon: Icon }) => {
+const ListItem = ({
+  name,
+  img,
+  description,
+  icon: Icon,
+  rightIcon: RightIcon,
+  ...props
+}) => {
   return (
-    <S.Item>
+    <S.Item {...props}>
+      {Icon && !img && <Icon />}
       {img && <S.Image src={img} />}
       <S.Content>
         {name && <S.Name>{name}</S.Name>}
         {description && <S.Description>{description}</S.Description>}
       </S.Content>
-      {Icon && <Icon />}
+      {RightIcon && <RightIcon />}
     </S.Item>
   )
 }

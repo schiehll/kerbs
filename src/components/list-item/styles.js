@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components'
 
-export const Item = styled.li`
+export const Item = styled.div`
   ${({ theme: { spacing, radius, colors, dark } }) => css`
-    margin: ${spacing.small}px 0;
     padding: ${spacing.small}px;
     border-radius: ${radius}px;
     background-color: ${dark ? colors.gray[8] : colors.gray[2]};
     display: flex;
     align-items: center;
+    width: 100%;
   `}
 `
 

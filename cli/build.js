@@ -3,12 +3,15 @@ import fs from 'fs'
 import shell from 'shelljs'
 import chalk from 'chalk'
 import PATHS from '../webpack/paths'
+import loadSVGLogos from './loadSVGLogos'
 
-export default () => {
+export default async () => {
+  await loadSVGLogos()
+
   const webpackExec = path.resolve(__dirname, '../node_modules/.bin/webpack')
   const webpackConfig = path.resolve(__dirname, '../webpack/webpack.config.js')
 
-  console.log(chalk.cyan('Building kerbs...\n'))
+  console.log(chalk.cyan('Building kerbs...'))
 
   shell.rm('-rf', PATHS.public)
   const code = shell.exec(
@@ -20,7 +23,7 @@ export default () => {
 
     console.log(
       chalk.green(
-        `\nSuccessfully built kerbs! Check ${chalk.bold(PATHS.public)} folder.`
+        `Successfully built kerbs! Check ${chalk.bold(PATHS.public)} folder.`
       )
     )
   }

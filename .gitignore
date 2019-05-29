@@ -26,3 +26,4 @@ node_modules/
 # Build
 public
 kerbs_public
+src/assets/*.json

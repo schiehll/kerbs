@@ -86,9 +86,5 @@ module.exports = {
     })
   ],
 
-  stats: {
-    modules: false,
-    children: false,
-    colors: true
-  }
+  stats: 'errors-only'
 }

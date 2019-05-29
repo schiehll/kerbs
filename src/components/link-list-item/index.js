@@ -1,19 +1,19 @@
 import React from 'react'
 import ListItem from 'components/list-item'
-import useSVGPorn from 'utils/hooks/useSVGPorn'
+import useSVGLogo from 'utils/hooks/useSVGLogo'
 
 import * as S from './styles'
 
 const LinkListItem = ({ to, name, img, description, ...props }) => {
-  const SVGPorn = useSVGPorn(to)
+  const SVGData = useSVGLogo(to)
 
   return (
-    <S.Link href={SVGPorn?.url || '#'} target="_blank" {...props}>
+    <S.Link href={SVGData?.url || '#'} target="_blank" {...props}>
       <ListItem
         description={description}
-        img={img || SVGPorn?.src}
-        name={name || SVGPorn?.name}
-        icon={S.ExternalLinkIcon}
+        img={img || SVGData?.src}
+        name={name || SVGData?.name}
+        rightIcon={S.ExternalLinkIcon}
       />
     </S.Link>
   )

@@ -17,9 +17,12 @@ var _webpackDevServerUtils = require("../webpack/webpackDevServerUtils");
 
 var _webpack2 = _interopRequireDefault(require("../webpack/webpack.dev"));
 
+var _loadSVGLogos = _interopRequireDefault(require("./loadSVGLogos"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
+  await (0, _loadSVGLogos.default)();
   const port = await _portfinder.default.getPortPromise();
   const HOST = '0.0.0.0';
   const urls = (0, _webpackDevServerUtils.prepareUrls)('http', HOST, port);
