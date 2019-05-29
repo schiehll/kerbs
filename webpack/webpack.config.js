@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const highlight = require('remark-highlight.js')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
 const resolveNodeModule = filePath => {
@@ -53,7 +54,19 @@ module.exports = {
             loader: resolveNodeModule('babel-loader'),
             options: babelLoaderOptions
           },
-          resolveNodeModule('@mdx-js/loader')
+          {
+            loader: resolveNodeModule('@mdx-js/loader'),
+            options: {
+              remarkPlugins: [highlight]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          resolveNodeModule('style-loader'),
+          resolveNodeModule('css-loader')
         ]
       }
     ]

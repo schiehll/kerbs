@@ -7,11 +7,13 @@ import Fuse from 'fuse.js'
 import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
 import Sidebar from 'components/shell/sidebar'
+import Code from 'components/shell/code'
 import LightSwitch from 'components/shell/light-switch'
 import getKerbs from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
 import LightContext from 'utils/lightContext'
 import theme from 'styles/theme'
+import { MDXProvider } from '@mdx-js/react'
 
 import * as S from './styles'
 
@@ -117,29 +119,31 @@ const Layout = ({ toggleLightSwitch }) => {
 
   return (
     <ThemeProvider theme={{ ...theme, dark: !lightContext }}>
-      <Fragment>
-        <GlobalStyles />
-        <S.Wrapper>
-          <Sidebar
-            ref={sideSheetRef}
-            items={navItems}
-            activeItem={activeItem}
-            onClick={handleNavbarItemClick}
-            shouldShowSideSheet={openSideSheet}
-            toggleSideSheet={toggleSideSheet}
-          />
-          <S.Content>
-            <S.Header>
-              <S.SideSheetButton onClick={toggleSideSheet}>
-                <FiMenu />
-              </S.SideSheetButton>
-              <Search onChange={handleSearch} />
-              <LightSwitch light={lightContext} onClick={toggleLightSwitch} />
-            </S.Header>
-            <Widgets widgets={kerbs} />
-          </S.Content>
-        </S.Wrapper>
-      </Fragment>
+      <MDXProvider components={{ pre: Code }}>
+        <Fragment>
+          <GlobalStyles />
+          <S.Wrapper>
+            <Sidebar
+              ref={sideSheetRef}
+              items={navItems}
+              activeItem={activeItem}
+              onClick={handleNavbarItemClick}
+              shouldShowSideSheet={openSideSheet}
+              toggleSideSheet={toggleSideSheet}
+            />
+            <S.Content>
+              <S.Header>
+                <S.SideSheetButton onClick={toggleSideSheet}>
+                  <FiMenu />
+                </S.SideSheetButton>
+                <Search onChange={handleSearch} />
+                <LightSwitch light={lightContext} onClick={toggleLightSwitch} />
+              </S.Header>
+              <Widgets widgets={kerbs} />
+            </S.Content>
+          </S.Wrapper>
+        </Fragment>
+      </MDXProvider>
     </ThemeProvider>
   )
 }

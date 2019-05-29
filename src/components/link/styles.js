@@ -22,7 +22,7 @@ export const Link = styled.a`
     color: currentColor;
     padding: ${spacing.base / 2}px ${spacing.base}px;
     border-radius: 50px;
-    background-color: ${dark ? colors.black : colors.gray[2]};
+    background-color: ${dark ? colors.gray[8] : colors.gray[2]};
     cursor: pointer;
     display: inline-flex;
     align-items: center;
