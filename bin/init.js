@@ -20,27 +20,32 @@ var _paths = _interopRequireDefault(require("../webpack/paths"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
-  const response = await (0, _enquirer.prompt)({
-    type: 'input',
-    name: 'PROJECT_NAME',
-    message: `What's the project name?`,
-    initial: 'Unnamed Project'
-  });
-
   const configPath = _path.default.resolve(process.cwd(), '.kerbsrc.json');
 
   if (_fs.default.existsSync(configPath)) {
     console.log(_chalk.default.yellow`Found a .kerbsrc.json file, will be using it.`);
   } else {
+    const namePrompt = new _enquirer.Input({
+      message: `What's the project name?`,
+      initial: 'Unnamed Project'
+    });
+    const projectName = await namePrompt.run();
+
     _fs.default.writeFileSync(configPath, JSON.stringify({
-      name: response.PROJECT_NAME
+      name: projectName
     }, null, 2), 'utf8');
   }
 
   if (!_fs.default.existsSync(_paths.default.docs)) {
+    const templatePrompt = new _enquirer.Select({
+      message: 'Choose a template',
+      choices: ['app', 'lib']
+    });
+    const template = await templatePrompt.run();
+
     _fs.default.mkdirSync(_paths.default.docs);
 
-    _shelljs.default.cp('-r', _path.default.resolve(__dirname, '../src/templates/default/*'), _paths.default.docs);
+    _shelljs.default.cp('-r', _path.default.resolve(__dirname, `../src/templates/${template}/*`), _paths.default.docs);
 
     _shelljs.default.touch('-c', _fs.default.readdirSync(_paths.default.docs));
 
