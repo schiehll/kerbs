@@ -136,7 +136,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
       <MDXProvider
         components={{
           pre: Code,
-          inlineCode: InlineCode,
+          code: InlineCode,
           blockquote: Blockquote
         }}
       >

@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const highlight = require('remark-highlight.js')
+const prism = require('@gridsome/remark-prismjs')
 const PATHS = require('./paths')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
@@ -64,7 +64,7 @@ module.exports = {
           {
             loader: resolveNodeModule('@mdx-js/loader'),
             options: {
-              remarkPlugins: [highlight]
+              remarkPlugins: [prism]
             }
           }
         ]

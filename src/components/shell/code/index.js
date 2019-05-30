@@ -1,4 +1,4 @@
-import 'highlight.js/styles/vs2015.css'
+import 'prism-themes/themes/prism-hopscotch.css'
 import React from 'react'
 import { FiTerminal } from 'react-icons/fi'
 

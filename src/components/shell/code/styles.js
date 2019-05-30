@@ -23,5 +23,10 @@ export const Header = styled.div`
 `
 
 export const Pre = styled.pre`
-  margin: 0;
+  ${({ theme: { spacing, colors } }) => css`
+    margin: 0;
+    padding: ${spacing.base}px;
+    background-color: ${colors.gray[10]};
+    overflow-x: auto;
+  `}
 `
