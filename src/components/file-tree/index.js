@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 import List from 'components/list'
 import { FiChevronRight } from 'react-icons/fi'
 import nanoid from 'nanoid'
@@ -21,20 +22,20 @@ const generatePathsIds = paths => {
 }
 
 const findByIdInTree = (tree, id) => {
-  return tree.reduce((found, file) => {
-    if (file.id === id) {
-      return file
+  return tree.reduce((found, path) => {
+    if (path.id === id) {
+      return path
     }
 
-    if (file.children) {
-      return findByIdInTree(file.children, id)
+    if (path.children) {
+      return findByIdInTree(path.children, id)
     }
 
     return found
   }, null)
 }
 
-const FileTree = ({ files }) => {
+const FileTree = ({ paths }) => {
   const root = useRef(null)
   const [breadcrumb, setBreadcrumb] = useState([])
   const [tree, setTree] = useState([])
@@ -68,7 +69,7 @@ const FileTree = ({ files }) => {
   }
 
   useEffect(() => {
-    const newTree = generatePathsIds(files)
+    const newTree = generatePathsIds(paths)
     setTree(newTree)
     root.current = {
       id: '__ROOT__',
@@ -76,7 +77,7 @@ const FileTree = ({ files }) => {
       children: newTree
     }
     setBreadcrumb([root.current])
-  }, [files])
+  }, [paths])
 
   return (
     <Fragment>
@@ -117,6 +118,16 @@ const FileTree = ({ files }) => {
         ))}
       </List>
     </Fragment>
+  )
+}
+
+FileTree.propTypes = {
+  paths: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      children: PropTypes.array
+    })
   )
 }
 

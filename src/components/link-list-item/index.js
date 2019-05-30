@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ListItem from 'components/list-item'
 import useSVGLogo from 'utils/hooks/useSVGLogo'
 
@@ -17,6 +18,13 @@ const LinkListItem = ({ to, name, img, description, ...props }) => {
       />
     </S.Link>
   )
+}
+
+LinkListItem.propTypes = {
+  to: PropTypes.string,
+  name: PropTypes.string,
+  img: PropTypes.string,
+  description: PropTypes.string
 }
 
 export default LinkListItem

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import useSVGLogo from 'utils/hooks/useSVGLogo'
 
 import * as S from './styles'
@@ -13,6 +14,10 @@ const Link = ({ children, to, ...props }) => {
       <S.ExternalLinkIcon />
     </S.Link>
   )
+}
+
+Link.propTypes = {
+  to: PropTypes.string
 }
 
 export default Link

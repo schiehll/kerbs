@@ -1,4 +1,5 @@
 import React, { forwardRef, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Logo from 'components/shell/logo'
 import Nav from 'components/shell/nav'
@@ -47,5 +48,20 @@ const Sidebar = forwardRef(
     )
   }
 )
+
+Sidebar.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      meta: PropTypes.shape({
+        title: PropTypes.string
+      })
+    })
+  ).isRequired,
+  activeItem: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  toggleSideSheet: PropTypes.func.isRequired,
+  shouldShowSideSheet: PropTypes.bool
+}
 
 export default Sidebar

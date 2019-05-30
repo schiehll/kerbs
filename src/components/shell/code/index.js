@@ -4,9 +4,9 @@ import { FiTerminal } from 'react-icons/fi'
 
 import * as S from './styles'
 
-const Code = ({ children }) => {
+const Code = ({ children, ...props }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper {...props}>
       <S.Header>
         <FiTerminal />
       </S.Header>

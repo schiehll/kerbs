@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react'
+import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-const Nav = forwardRef(({ items, activeItem, onClick }, ref) => {
+const Nav = forwardRef(({ items, activeItem, onClick, ...props }, ref) => {
   return (
-    <S.Nav>
+    <S.Nav {...props}>
       {items.map(item => {
         return (
           <S.Item
@@ -20,5 +21,18 @@ const Nav = forwardRef(({ items, activeItem, onClick }, ref) => {
     </S.Nav>
   )
 })
+
+Nav.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      meta: PropTypes.shape({
+        title: PropTypes.string
+      })
+    })
+  ).isRequired,
+  activeItem: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+}
 
 export default Nav

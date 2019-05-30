@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import useComponentSize from '@rehooks/component-size'
 
 import * as S from './styles'
 
-const Grid = ({ children, gap, minWidth = 400, ...props }) => {
+const Grid = ({ children, minWidth, ...props }) => {
   const wrapper = useRef(null)
   const size = useComponentSize(wrapper)
   const [columnsNumber, setColumnsNumber] = useState(3)
@@ -17,7 +18,7 @@ const Grid = ({ children, gap, minWidth = 400, ...props }) => {
   }, [size?.width])
 
   return (
-    <S.Wrapper ref={wrapper} gap={gap} {...props}>
+    <S.Wrapper ref={wrapper} {...props}>
       {children
         .reduce((columns, child, i) => {
           columns[i % columnsNumber] = (
@@ -27,14 +28,18 @@ const Grid = ({ children, gap, minWidth = 400, ...props }) => {
           return columns
         }, [])
         .map((column, i) => {
-          return (
-            <S.Column key={i} gap={gap}>
-              {column}
-            </S.Column>
-          )
+          return <S.Column key={i}>{column}</S.Column>
         })}
     </S.Wrapper>
   )
+}
+
+Grid.propTypes = {
+  minWidth: PropTypes.number
+}
+
+Grid.defaultProps = {
+  minWidth: 400
 }
 
 export default Grid

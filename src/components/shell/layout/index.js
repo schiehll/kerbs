@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
+import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import { createBrowserHistory } from 'history'
 import queryString from 'query-string'
@@ -19,7 +20,7 @@ import * as S from './styles'
 
 const history = createBrowserHistory()
 
-const Layout = ({ toggleLightSwitch }) => {
+const Layout = ({ toggleLightSwitch, ...props }) => {
   const sideSheetRef = useRef(null)
   const fuse = useRef(null)
   const allKerbs = useRef([])
@@ -133,7 +134,7 @@ const Layout = ({ toggleLightSwitch }) => {
       <MDXProvider components={{ pre: Code }}>
         <Fragment>
           <GlobalStyles />
-          <S.Wrapper>
+          <S.Wrapper {...props}>
             <Sidebar
               ref={sideSheetRef}
               items={navItems}
@@ -157,6 +158,10 @@ const Layout = ({ toggleLightSwitch }) => {
       </MDXProvider>
     </ThemeProvider>
   )
+}
+
+Layout.propTypes = {
+  toggleLightSwitch: PropTypes.func.isRequired
 }
 
 export default Layout

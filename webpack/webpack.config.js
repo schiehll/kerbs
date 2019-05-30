@@ -24,7 +24,14 @@ const babelLoaderOptions = {
     resolveNodeModule('@babel/plugin-transform-runtime'),
     resolveNodeModule('@babel/plugin-proposal-optional-chaining'),
     resolveNodeModule('@babel/plugin-syntax-dynamic-import')
-  ]
+  ],
+  env: {
+    production: {
+      plugins: [
+        resolveNodeModule('babel-plugin-transform-react-remove-prop-types')
+      ]
+    }
+  }
 }
 
 module.exports = {

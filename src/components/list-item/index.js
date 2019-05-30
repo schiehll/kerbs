@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import * as S from './styles'
 
 const ListItem = ({
@@ -20,6 +21,14 @@ const ListItem = ({
       {RightIcon && <RightIcon />}
     </S.Item>
   )
+}
+
+ListItem.propTypes = {
+  name: PropTypes.string,
+  img: PropTypes.string,
+  description: PropTypes.string,
+  icon: PropTypes.object,
+  rightIcon: PropTypes.object
 }
 
 export default ListItem

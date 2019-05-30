@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FiSearch } from 'react-icons/fi'
 
 import * as S from './styles'
 
-const Search = ({ onChange }) => {
+const Search = ({ onChange, ...props }) => {
   return (
-    <S.Label>
+    <S.Label {...props}>
       <S.InputWrapper>
         <FiSearch />
         <S.StyledInput
@@ -16,6 +17,10 @@ const Search = ({ onChange }) => {
       </S.InputWrapper>
     </S.Label>
   )
+}
+
+Search.propTypes = {
+  onChange: PropTypes.func.isRequired
 }
 
 export default Search

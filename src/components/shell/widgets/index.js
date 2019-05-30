@@ -8,9 +8,9 @@ dayjs.extend(relativeTime)
 
 import * as S from './styles'
 
-const Widgets = ({ widgets }) => {
+const Widgets = ({ widgets, ...props }) => {
   return (
-    <Grid gap="20px">
+    <Grid {...props}>
       {widgets.map(({ kerb: Kerb, id, stats }) => {
         return (
           <S.Widget key={id}>
