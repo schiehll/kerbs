@@ -9,7 +9,51 @@ export const meta = {
 
 <FileTree
   files={[
-    { name: 'src', description: 'The source folder', isFolder: true },
+    {
+      name: 'src',
+      description: 'The source folder',
+      children: [
+        {
+          name: 'dist',
+          description: 'The dist folder',
+          children: []
+        },
+        { name: 'file1.json', description: 'The json file' },
+        {
+          name: 'components',
+          description: 'The components folder',
+          children: [
+            {
+              name: 'ueh',
+              description: 'The ueh folder',
+              children: [
+                {
+                  name: 'dist-ueh',
+                  description: 'The dist-ueh folder',
+                  children: [
+                    {
+                      name: 'ueh2',
+                      description: 'The ueh2 folder',
+                      children: [
+                        {
+                          name: 'dist-ueh2',
+                          description: 'The dist-ueh2 folder',
+                          children: []
+                        },
+                        { name: 'file5.json', description: 'One json file' }
+                      ]
+                    },
+                    { name: 'file4.js', description: 'The file' }
+                  ]
+                },
+                { name: 'file3.json', description: 'One json file' }
+              ]
+            },
+            { name: 'file2.js', description: 'The file' }
+          ]
+        }
+      ]
+    },
     { name: 'file.js', description: 'The file' }
   ]}
 />
