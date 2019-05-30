@@ -9,6 +9,7 @@ import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
 import Sidebar from 'components/shell/sidebar'
 import Code from 'components/shell/code'
+import InlineCode from 'components/shell/inline-code'
 import Blockquote from 'components/shell/blockquote'
 import LightSwitch from 'components/shell/light-switch'
 import getKerbs from 'utils/getKerbs'
@@ -132,7 +133,13 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
         dark: !lightContext
       }}
     >
-      <MDXProvider components={{ pre: Code, blockquote: Blockquote }}>
+      <MDXProvider
+        components={{
+          pre: Code,
+          inlineCode: InlineCode,
+          blockquote: Blockquote
+        }}
+      >
         <Fragment>
           <GlobalStyles />
           <S.Wrapper {...props}>

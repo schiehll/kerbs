@@ -31,6 +31,7 @@ const theme = {
     sizes: {
       default: 16,
       small: 12,
+      medium: 14,
       big: 18,
       h1: 42,
       h2: 24
