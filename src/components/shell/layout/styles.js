@@ -5,9 +5,10 @@ import { size as sidebarSize } from 'components/shell/sidebar/styles'
 
 export const Wrapper = styled.div`
   ${({ theme: { spacing } }) => css`
-    max-width: 1200px;
+    max-width: 80%;
     margin: 0 auto;
     padding: ${spacing.big}px;
+    ${media.lessThan('tablet')`max-width: 100%;`}
   `}
 `
 

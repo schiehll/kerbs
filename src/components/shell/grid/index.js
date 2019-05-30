@@ -4,13 +4,13 @@ import useComponentSize from '@rehooks/component-size'
 
 import * as S from './styles'
 
-const Grid = ({ children, minWidth, ...props }) => {
+const Grid = ({ children, maxWidth, ...props }) => {
   const wrapper = useRef(null)
   const size = useComponentSize(wrapper)
   const [columnsNumber, setColumnsNumber] = useState(3)
 
   const calculateColumnsNumber = () => {
-    setColumnsNumber(Math.floor(wrapper.current.offsetWidth / minWidth) || 1)
+    setColumnsNumber(Math.floor(wrapper.current.offsetWidth / maxWidth) || 1)
   }
 
   useEffect(() => {
@@ -35,11 +35,11 @@ const Grid = ({ children, minWidth, ...props }) => {
 }
 
 Grid.propTypes = {
-  minWidth: PropTypes.number
+  maxWidth: PropTypes.number
 }
 
 Grid.defaultProps = {
-  minWidth: 400
+  maxWidth: 500
 }
 
 export default Grid
