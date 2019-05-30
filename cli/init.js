@@ -25,19 +25,21 @@ export default async () => {
   }
 
   if (!fs.existsSync(PATHS.docs)) {
-    const templatePrompt = new Select({
-      message: 'Choose a template',
-      choices: ['app', 'lib']
-    })
-    const template = await templatePrompt.run()
+    const templatesFolder = path.resolve(__dirname, '../src/templates')
+    const templates = fs.readdirSync(templatesFolder)
+    let template = templates[0]
+
+    if (templates.length > 1) {
+      const templatePrompt = new Select({
+        message: 'Choose a template',
+        choices: templates
+      })
+      template = await templatePrompt.run()
+    }
 
     fs.mkdirSync(PATHS.docs)
 
-    shell.cp(
-      '-r',
-      path.resolve(__dirname, `../src/templates/${template}/*`),
-      PATHS.docs
-    )
+    shell.cp('-r', path.resolve(templatesFolder, `${template}/*`), PATHS.docs)
     shell.touch('-c', fs.readdirSync(PATHS.docs))
     console.log(
       chalk.green(

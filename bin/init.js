@@ -37,15 +37,23 @@ var _default = async () => {
   }
 
   if (!_fs.default.existsSync(_paths.default.docs)) {
-    const templatePrompt = new _enquirer.Select({
-      message: 'Choose a template',
-      choices: ['app', 'lib']
-    });
-    const template = await templatePrompt.run();
+    const templatesFolder = _path.default.resolve(__dirname, '../src/templates');
+
+    const templates = _fs.default.readdirSync(templatesFolder);
+
+    let template = templates[0];
+
+    if (templates.length > 1) {
+      const templatePrompt = new _enquirer.Select({
+        message: 'Choose a template',
+        choices: templates
+      });
+      template = await templatePrompt.run();
+    }
 
     _fs.default.mkdirSync(_paths.default.docs);
 
-    _shelljs.default.cp('-r', _path.default.resolve(__dirname, `../src/templates/${template}/*`), _paths.default.docs);
+    _shelljs.default.cp('-r', _path.default.resolve(templatesFolder, `${template}/*`), _paths.default.docs);
 
     _shelljs.default.touch('-c', _fs.default.readdirSync(_paths.default.docs));
 
