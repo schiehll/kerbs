@@ -27,8 +27,9 @@ const findByIdInTree = (tree, id) => {
       return path
     }
 
-    if (path.children) {
-      return findByIdInTree(path.children, id)
+    if (path?.children?.length > 0) {
+      const foundChild = findByIdInTree(path.children, id)
+      if (foundChild) return foundChild
     }
 
     return found
@@ -89,7 +90,9 @@ const FileTree = ({ paths }) => {
               onClick={() => handleBreadcrumbClick(path.id)}
             >
               {path.id !== root.current.id && (
-                <S.BreadcrumbSeparator>
+                <S.BreadcrumbSeparator
+                  isActive={index === breadcrumb.length - 1}
+                >
                   <FiChevronRight />
                 </S.BreadcrumbSeparator>
               )}

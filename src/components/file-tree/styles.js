@@ -53,16 +53,18 @@ export const BreadcrumbItem = styled.button`
 `
 
 export const BreadcrumbSeparator = styled.div`
-  ${({ theme: { spacing } }) => css`
+  ${({ theme: { spacing }, isActive }) => css`
     padding: 0 ${spacing.base}px;
     display: flex;
     align-items: center;
+    opacity: ${isActive ? 1 : 0.5};
   `}
 `
 
 export const BreadcrumbPath = styled.span`
   ${({ theme: { font }, isActive }) => css`
     font-weight: ${isActive ? font.weights.bold : font.weights.normal};
+    opacity: ${isActive ? 1 : 0.5};
   `}
 `
 

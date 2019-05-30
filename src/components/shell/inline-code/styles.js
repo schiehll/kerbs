@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.span`
   ${({ theme: { colors, spacing, radius, font } }) => css`
     background-color: ${colors.foreground};
     display: inline-flex;
