@@ -9,6 +9,7 @@ import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
 import Sidebar from 'components/shell/sidebar'
 import Code from 'components/shell/code'
+import Blockquote from 'components/shell/blockquote'
 import LightSwitch from 'components/shell/light-switch'
 import getKerbs from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
@@ -131,7 +132,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
         dark: !lightContext
       }}
     >
-      <MDXProvider components={{ pre: Code }}>
+      <MDXProvider components={{ pre: Code, blockquote: Blockquote }}>
         <Fragment>
           <GlobalStyles />
           <S.Wrapper {...props}>
