@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components'
 import { cssElevation } from 'css-elevation'
 
 export const Widget = styled.div`
-  ${({ theme: { spacing, colors, dark, radius } }) => css`
+  ${({ theme: { spacing, colors, radius } }) => css`
     overflow: hidden;
     max-height: 100%;
-    background-color: ${dark ? colors.gray[10] : colors.white};
+    background-color: ${colors.background};
     padding: 0;
     border-radius: ${radius}px;
 

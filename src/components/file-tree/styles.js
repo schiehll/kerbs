@@ -3,12 +3,12 @@ import ListItem from 'components/list-item'
 import { FiFile, FiFolder, FiFolderMinus } from 'react-icons/fi'
 
 export const Item = styled(ListItem)`
-  ${({ theme: { colors, dark }, isFolder }) => css`
+  ${({ theme: { colors }, isFolder }) => css`
     margin: 0;
     ${!isFolder &&
       `
       background-color: transparent;
-      border: 2px solid ${dark ? colors.gray[8] : colors.gray[2]};
+      border: 2px solid ${colors.foreground};
     `}
   `}
 `
@@ -28,12 +28,12 @@ export const Button = styled.button`
 `
 
 export const Breadcrumb = styled.div`
-  ${({ theme: { spacing, radius, colors, dark } }) => css`
+  ${({ theme: { spacing, radius, colors } }) => css`
     display: flex;
     margin: ${spacing.small}px 0 ${spacing.medium}px 0;
     border-radius: ${radius}px;
     padding: ${spacing.base}px ${spacing.small}px;
-    border: 2px solid ${dark ? colors.gray[8] : colors.gray[2]};
+    border: 2px solid ${colors.foreground};
     flex-wrap: wrap;
   `}
 `

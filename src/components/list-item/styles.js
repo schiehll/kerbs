@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components'
 
 export const Item = styled.div`
-  ${({ theme: { spacing, radius, colors, dark } }) => css`
+  ${({ theme: { spacing, radius, colors } }) => css`
     padding: ${spacing.small}px;
     border-radius: ${radius}px;
-    background-color: ${dark ? colors.gray[8] : colors.gray[2]};
+    background-color: ${colors.foreground};
     display: flex;
     align-items: center;
     width: 100%;
@@ -35,6 +35,6 @@ export const Name = styled.div`
 export const Description = styled.div`
   ${({ theme: { font, colors } }) => css`
     font-size: ${font.sizes.small}px;
-    color: ${colors.gray[6]};
+    color: ${colors.text};
   `}
 `

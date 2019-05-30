@@ -118,7 +118,18 @@ const Layout = ({ toggleLightSwitch }) => {
   }, [activeItem])
 
   return (
-    <ThemeProvider theme={{ ...theme, dark: !lightContext }}>
+    <ThemeProvider
+      theme={{
+        ...theme,
+        colors: {
+          ...theme.colors,
+          foreground: theme.colors.gray[lightContext ? 2 : 8],
+          background: lightContext ? theme.colors.white : theme.colors.gray[10],
+          text: theme.colors.gray[lightContext ? 9 : 5]
+        },
+        dark: !lightContext
+      }}
+    >
       <MDXProvider components={{ pre: Code }}>
         <Fragment>
           <GlobalStyles />

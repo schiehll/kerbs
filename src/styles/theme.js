@@ -5,7 +5,10 @@ const baseSpacing = 8
 const theme = {
   colors: {
     ...colors,
-    gray: colors.gray.concat('#1e1e1e', '#121212')
+    gray: colors.gray.concat('#1e1e1e', '#121212'),
+    background: colors.white,
+    foreground: colors.gray[2],
+    text: colors.gray[9]
   },
 
   spacing: {

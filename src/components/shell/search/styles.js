@@ -2,9 +2,7 @@ import styled, { css } from 'styled-components'
 import { cssElevation } from 'css-elevation'
 
 export const Label = styled.label`
-  ${({ theme: { spacing } }) => css`
-    width: 50%;
-  `}
+  width: 50%;
 `
 
 export const InputWrapper = styled.div`
@@ -24,7 +22,7 @@ export const InputWrapper = styled.div`
 `
 
 export const StyledInput = styled.input`
-  ${({ theme: { spacing, colors, dark, radius, font } }) => css`
+  ${({ theme: { spacing, colors, radius, font } }) => css`
     padding: ${spacing.small}px;
     width: 100%;
     border: none;
@@ -38,7 +36,7 @@ export const StyledInput = styled.input`
       opacity: 1;
     }
 
-    background-color: ${dark ? colors.gray[10] : colors.white};
+    background-color: ${colors.background};
     color: currentColor;
     ${cssElevation({ z: 1 })}
   `};

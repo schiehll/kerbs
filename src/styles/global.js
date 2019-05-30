@@ -4,7 +4,7 @@ const GlobalStyles = createGlobalStyle`${({
   theme: { font, colors, dark }
 }) => css`
   html {
-    color: ${dark ? colors.gray[5] : colors.gray[9]};
+    color: ${colors.text};
     background-color: ${dark ? colors.gray[11] : colors.gray[1]};
     transition: background-color 0.3s ease;
   }
