@@ -30,7 +30,7 @@ export const Button = styled.button`
 export const Breadcrumb = styled.div`
   ${({ theme: { spacing, radius, colors } }) => css`
     display: flex;
-    margin: ${spacing.small}px 0 ${spacing.medium}px 0;
+    margin: ${spacing.small}px 0 0;
     border-radius: ${radius}px;
     padding: ${spacing.base}px ${spacing.small}px;
     border: 2px solid ${colors.foreground};
@@ -84,5 +84,12 @@ export const EmptyFolderIcon = styled(FiFolderMinus)`
   ${({ theme: { font, spacing } }) => css`
     font-size: ${font.sizes.big}px;
     margin-right: ${spacing.small}px;
+  `}
+`
+
+export const Helper = styled.div`
+  ${({ theme: { font, spacing } }) => css`
+    font-size: ${font.sizes.small}px;
+    margin: ${spacing.small}px 0;
   `}
 `

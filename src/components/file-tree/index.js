@@ -100,6 +100,7 @@ const FileTree = ({ paths }) => {
           )
         })}
       </S.Breadcrumb>
+      <S.Helper>You can navigate by clicking in a folder below</S.Helper>
       <List>
         {tree.map((file, index) => (
           <S.Button key={index} onClick={() => handleItemClick(file)}>
