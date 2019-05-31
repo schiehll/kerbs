@@ -41,6 +41,7 @@ require('@babel/register')({
 })
 
 const PATHS = require('./paths')
+const kerbsConfig = require(PATHS.config).default
 
 const config = {
   entry: [resolve('src/index')],
@@ -96,6 +97,7 @@ const config = {
 
   plugins: [
     new HtmlWebpackPlugin({
+      title: `${kerbsConfig.name} - Kerbs`,
       template: resolve('src/index.html'),
       chunksSortMode: 'none'
     })
@@ -103,7 +105,5 @@ const config = {
 
   stats: 'errors-only'
 }
-
-const kerbsConfig = require(PATHS.config).default
 
 module.exports = merge.smart(config, kerbsConfig.webpackConfig || {})
