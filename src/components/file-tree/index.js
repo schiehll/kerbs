@@ -129,7 +129,7 @@ FileTree.propTypes = {
   paths: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      description: PropTypes.string,
+      description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       children: PropTypes.array
     })
   )

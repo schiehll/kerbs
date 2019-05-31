@@ -24,7 +24,7 @@ LinkListItem.propTypes = {
   to: PropTypes.string,
   name: PropTypes.string,
   img: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 }
 
 export default LinkListItem

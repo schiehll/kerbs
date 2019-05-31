@@ -34,7 +34,11 @@ export const Name = styled.div`
 
 export const Description = styled.div`
   ${({ theme: { font, colors } }) => css`
-    font-size: ${font.sizes.small}px;
+    font-size: ${font.sizes.medium}px;
     color: ${colors.text};
+
+    > div {
+      margin-top: 8px;
+    }
   `}
 `

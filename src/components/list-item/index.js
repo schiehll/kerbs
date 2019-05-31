@@ -26,9 +26,9 @@ const ListItem = ({
 ListItem.propTypes = {
   name: PropTypes.string,
   img: PropTypes.string,
-  description: PropTypes.string,
-  icon: PropTypes.object,
-  rightIcon: PropTypes.object
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  icon: PropTypes.elementType,
+  rightIcon: PropTypes.elementType
 }
 
 export default ListItem
