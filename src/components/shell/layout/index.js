@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components'
 import { createBrowserHistory } from 'history'
 import queryString from 'query-string'
 import GlobalStyles from 'styles/global'
-import Fuse from 'fuse.js'
 import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
 import Sidebar from 'components/shell/sidebar'
@@ -15,6 +14,7 @@ import LightSwitch from 'components/shell/light-switch'
 import getKerbs from 'utils/getKerbs'
 import { FiMenu } from 'react-icons/fi'
 import LightContext from 'utils/lightContext'
+import useDebounce from 'utils/hooks/useDebounce'
 import theme from 'styles/theme'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -24,7 +24,6 @@ const history = createBrowserHistory()
 
 const Layout = ({ toggleLightSwitch, ...props }) => {
   const sideSheetRef = useRef(null)
-  const fuse = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
   const [navItems, setNavItems] = useState([
@@ -33,6 +32,8 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
   const [activeItem, setActiveItem] = useState(null)
   const [openSideSheet, setOpenSideSheet] = useState(false)
   const lightContext = useContext(LightContext)
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 250)
 
   const toggleSideSheet = () => {
     setOpenSideSheet(!openSideSheet)
@@ -51,31 +52,45 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
     }
   }
 
+  const doSearch = () => {
+    const regex = new RegExp(debouncedSearch, 'ig')
+    return allKerbs.current.filter(kerb => {
+      if (
+        kerb?.meta?.title.search(regex) !== -1 ||
+        kerb?.contents.search(regex) !== -1
+      ) {
+        return true
+      }
+
+      return false
+    })
+  }
+
   const handleSearch = e => {
     const query = e.target.value
+    setSearch(query)
+  }
+
+  useEffect(() => {
     let activeId = '__DASHBOARD__'
 
-    if (!query) {
+    if (!debouncedSearch) {
       setKerbs(allKerbs.current)
     } else {
-      const searchResults = fuse.current.search(query)
-      setKerbs(allKerbs.current.filter(kerb => searchResults.includes(kerb.id)))
+      const searchResults = doSearch()
+      setKerbs(searchResults)
 
       if (searchResults.length === 1) {
-        activeId = searchResults[0]
+        activeId = searchResults[0].id
       }
     }
 
     setActiveItem(activeId)
-  }
+  }, [debouncedSearch])
 
   useEffect(() => {
     const loadKerbs = async () => {
       allKerbs.current = await getKerbs()
-      fuse.current = new Fuse(allKerbs.current, {
-        keys: ['meta.title', 'contents'],
-        id: 'id'
-      })
 
       setNavItems(
         navItems.concat(

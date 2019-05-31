@@ -5,7 +5,8 @@
   "bin": "./bin/index.js",
   "license": "MIT",
   "scripts": {
-    "build:cli": "babel cli --out-dir bin && chmod +x bin/index.js"
+    "build:cli": "babel cli --out-dir bin && chmod +x bin/index.js",
+    "lint": "eslint src --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -38,7 +39,6 @@
     "css-loader": "^2.1.1",
     "dayjs": "^1.8.14",
     "enquirer": "^2.3.0",
-    "fuse.js": "^3.4.4",
     "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "nanoid": "^2.0.3",
