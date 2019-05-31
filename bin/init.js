@@ -20,10 +20,8 @@ var _paths = _interopRequireDefault(require("../webpack/paths"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
-  const configPath = _path.default.resolve(process.cwd(), '.kerbsrc.json');
-
-  if (_fs.default.existsSync(configPath)) {
-    console.log(_chalk.default.yellow`Found a .kerbsrc.json file, will be using it.`);
+  if (_fs.default.existsSync(_paths.default.config)) {
+    console.log(_chalk.default.yellow`Found a .kerbsrc.js file, will be using it.`);
   } else {
     const namePrompt = new _enquirer.Input({
       message: `What's the project name?`,
@@ -31,9 +29,7 @@ var _default = async () => {
     });
     const projectName = await namePrompt.run();
 
-    _fs.default.writeFileSync(configPath, JSON.stringify({
-      name: projectName
-    }, null, 2), 'utf8');
+    _fs.default.writeFileSync(_paths.default.config, `export default { name: "${projectName}" }`, 'utf8');
   }
 
   if (!_fs.default.existsSync(_paths.default.docs)) {

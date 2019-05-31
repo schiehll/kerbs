@@ -3,7 +3,7 @@ const config = require('./webpack.config.js')
 const path = require('path')
 const PATHS = require('./paths')
 
-module.exports = merge.strategy({ entry: 'prepend' })(config, {
+module.exports = merge.smart(config, {
   mode: 'development',
   devtool: 'source-map',
 

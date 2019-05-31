@@ -3,19 +3,25 @@
 
 var _commander = _interopRequireDefault(require("commander"));
 
-var _init = _interopRequireDefault(require("./init"));
-
-var _dev = _interopRequireDefault(require("./dev"));
-
-var _build = _interopRequireDefault(require("./build"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_commander.default.command('init').description('initialize kerbs').action(_init.default);
+_commander.default.command('init').description('initialize kerbs').action(() => {
+  const init = require('./init').default;
 
-_commander.default.command('dev').description('start the development server').action(_dev.default);
+  init();
+});
 
-_commander.default.command('build').description('generate a production ready doc site').action(_build.default);
+_commander.default.command('dev').description('start the development server').action(() => {
+  const dev = require('./dev').default;
+
+  dev();
+});
+
+_commander.default.command('build').description('generate a production ready doc site').action(() => {
+  const build = require('./build').default;
+
+  build();
+});
 
 _commander.default.parse(process.argv);
 

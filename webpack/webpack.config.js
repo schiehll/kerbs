@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
 const path = require('path')
 const prism = require('@gridsome/remark-prismjs')
-const PATHS = require('./paths')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
 const resolveNodeModule = filePath => {
@@ -34,7 +34,15 @@ const babelLoaderOptions = {
   }
 }
 
-module.exports = {
+require('@babel/register')({
+  babelrc: false,
+  presets: [path.resolve(__dirname, '../node_modules/@babel/preset-env')],
+  plugins: babelLoaderOptions.plugins
+})
+
+const PATHS = require('./paths')
+
+const config = {
   entry: [resolve('src/index')],
 
   output: {
@@ -95,3 +103,7 @@ module.exports = {
 
   stats: 'errors-only'
 }
+
+const kerbsConfig = require(PATHS.config).default
+
+module.exports = merge.smart(config, kerbsConfig.webpackConfig || {})

@@ -6,10 +6,8 @@ import chalk from 'chalk'
 import PATHS from '../webpack/paths'
 
 export default async () => {
-  const configPath = path.resolve(process.cwd(), '.kerbsrc.json')
-
-  if (fs.existsSync(configPath)) {
-    console.log(chalk.yellow`Found a .kerbsrc.json file, will be using it.`)
+  if (fs.existsSync(PATHS.config)) {
+    console.log(chalk.yellow`Found a .kerbsrc.js file, will be using it.`)
   } else {
     const namePrompt = new Input({
       message: `What's the project name?`,
@@ -18,8 +16,8 @@ export default async () => {
     const projectName = await namePrompt.run()
 
     fs.writeFileSync(
-      configPath,
-      JSON.stringify({ name: projectName }, null, 2),
+      PATHS.config,
+      `export default { name: "${projectName}" }`,
       'utf8'
     )
   }

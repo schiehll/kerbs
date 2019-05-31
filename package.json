@@ -25,6 +25,7 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "@gridsome/remark-prismjs": "^0.0.6",
     "@mdx-js/loader": "^1.0.20",
     "@mdx-js/react": "^1.0.20",
