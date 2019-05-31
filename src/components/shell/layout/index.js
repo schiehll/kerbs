@@ -14,6 +14,7 @@ import GlobalStyles from 'styles/global'
 import Search from 'components/shell/search'
 import Widgets from 'components/shell/widgets'
 import Sidebar from 'components/shell/sidebar'
+import Loading from 'components/shell/loading'
 import Code from 'components/shell/code'
 import InlineCode from 'components/shell/inline-code'
 import Blockquote from 'components/shell/blockquote'
@@ -39,6 +40,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
   const [openSideSheet, setOpenSideSheet] = useState(false)
   const lightContext = useContext(LightContext)
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(true)
   const debouncedSearch = useDebounce(search, 250)
 
   const toggleSideSheet = () => {
@@ -128,6 +130,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
       setKerbs(initialKerbs)
       setNavItems(initialNavItems)
       setActiveItem(initialActiveItem)
+      setLoading(false)
     }
 
     loadKerbs()
@@ -171,24 +174,32 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
         <Fragment>
           <GlobalStyles />
           <S.Wrapper {...props}>
-            <Sidebar
-              ref={sideSheetRef}
-              items={navItems}
-              activeItem={activeItem}
-              onClick={handleNavbarItemClick}
-              shouldShowSideSheet={openSideSheet}
-              toggleSideSheet={toggleSideSheet}
-            />
-            <S.Content>
-              <S.Header>
-                <S.SideSheetButton onClick={toggleSideSheet}>
-                  <FiMenu />
-                </S.SideSheetButton>
-                <Search ref={searchInputRef} onChange={handleSearch} />
-                <LightSwitch light={lightContext} onClick={toggleLightSwitch} />
-              </S.Header>
-              <Widgets widgets={kerbs} />
-            </S.Content>
+            {loading && <Loading />}
+            {!loading && (
+              <Fragment>
+                <Sidebar
+                  ref={sideSheetRef}
+                  items={navItems}
+                  activeItem={activeItem}
+                  onClick={handleNavbarItemClick}
+                  shouldShowSideSheet={openSideSheet}
+                  toggleSideSheet={toggleSideSheet}
+                />
+                <S.Content>
+                  <S.Header>
+                    <S.SideSheetButton onClick={toggleSideSheet}>
+                      <FiMenu />
+                    </S.SideSheetButton>
+                    <Search ref={searchInputRef} onChange={handleSearch} />
+                    <LightSwitch
+                      light={lightContext}
+                      onClick={toggleLightSwitch}
+                    />
+                  </S.Header>
+                  <Widgets widgets={kerbs} />
+                </S.Content>
+              </Fragment>
+            )}
           </S.Wrapper>
         </Fragment>
       </MDXProvider>

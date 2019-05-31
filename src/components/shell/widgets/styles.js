@@ -37,3 +37,19 @@ export const Footer = styled.div`
     }
   `}
 `
+
+export const EmptyState = styled.div`
+  ${({ theme: { spacing, radius, colors } }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 200px;
+
+    > svg {
+      font-size: ${spacing.big}px;
+      margin-bottom: ${spacing.medium}px;
+    }
+  `}
+`

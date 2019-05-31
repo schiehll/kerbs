@@ -1,16 +1,26 @@
 import React from 'react'
 import Grid from 'components/shell/grid'
-import { FiClock } from 'react-icons/fi'
+import { FiClock, FiXSquare } from 'react-icons/fi'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-dayjs.extend(relativeTime)
-
 import * as S from './styles'
+
+dayjs.extend(relativeTime)
 
 const Widgets = ({ widgets, ...props }) => {
   return (
     <Grid {...props}>
+      {widgets.length === 0 && (
+        <S.Widget>
+          <S.Content>
+            <S.EmptyState>
+              <FiXSquare />
+              Nothing found
+            </S.EmptyState>
+          </S.Content>
+        </S.Widget>
+      )}
       {widgets.map(({ kerb: Kerb, id, stats }) => {
         return (
           <S.Widget key={id}>
