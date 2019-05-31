@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import useComponentSize from '@rehooks/component-size'
 
@@ -6,16 +6,16 @@ import * as S from './styles'
 
 const Grid = ({ children, maxWidth, ...props }) => {
   const wrapper = useRef(null)
-  const size = useComponentSize(wrapper)
+  const { width } = useComponentSize(wrapper)
   const [columnsNumber, setColumnsNumber] = useState(3)
 
-  const calculateColumnsNumber = () => {
+  const calculateColumnsNumber = useCallback(() => {
     setColumnsNumber(Math.floor(wrapper.current.offsetWidth / maxWidth) || 1)
-  }
+  }, [maxWidth])
 
   useEffect(() => {
     calculateColumnsNumber()
-  }, [size?.width])
+  }, [width, calculateColumnsNumber])
 
   return (
     <S.Wrapper ref={wrapper} {...props}>

@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
     "react/jsx-uses-vars": 2,
     "react/jsx-uses-react": 2,
@@ -14,6 +14,8 @@
     ],
     "no-else-return": "error",
     "no-unreachable": "error",
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

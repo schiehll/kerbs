@@ -1,4 +1,11 @@
-import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  useCallback
+} from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import { createBrowserHistory } from 'history'
@@ -26,9 +33,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
   const sideSheetRef = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
-  const [navItems, setNavItems] = useState([
-    { id: '__DASHBOARD__', meta: { title: 'dashboard' }, slug: 'dashboard' }
-  ])
+  const [navItems, setNavItems] = useState([])
   const [activeItem, setActiveItem] = useState(null)
   const [openSideSheet, setOpenSideSheet] = useState(false)
   const lightContext = useContext(LightContext)
@@ -52,7 +57,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
     }
   }
 
-  const doSearch = () => {
+  const doSearch = useCallback(() => {
     const regex = new RegExp(debouncedSearch, 'ig')
     return allKerbs.current.filter(kerb => {
       if (
@@ -64,7 +69,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
 
       return false
     })
-  }
+  }, [debouncedSearch])
 
   const handleSearch = e => {
     const query = e.target.value
@@ -86,22 +91,24 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
     }
 
     setActiveItem(activeId)
-  }, [debouncedSearch])
+  }, [debouncedSearch, doSearch])
 
   useEffect(() => {
     const loadKerbs = async () => {
       allKerbs.current = await getKerbs()
-
-      setNavItems(
-        navItems.concat(
-          allKerbs.current.sort(
-            (a, b) => (a?.meta?.order || 0) - b?.meta?.order
-          )
+      const initialNavItems = [
+        {
+          id: '__DASHBOARD__',
+          meta: { title: 'dashboard' },
+          slug: 'dashboard'
+        },
+        ...allKerbs.current.sort(
+          (a, b) => (a?.meta?.order || 0) - b?.meta?.order
         )
-      )
+      ]
 
       const { kerb } = queryString.parse(history.location.search)
-      let initialActiveItem = navItems[0].id
+      let initialActiveItem = initialNavItems[0].id
       let initialKerbs = allKerbs.current
 
       if (kerb) {
@@ -114,6 +121,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
       }
 
       setKerbs(initialKerbs)
+      setNavItems(initialNavItems)
       setActiveItem(initialActiveItem)
     }
 
@@ -133,7 +141,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
         history.push(slug === 'dashboard' ? '/' : `?kerb=${slug}`)
       }
     }
-  }, [activeItem])
+  }, [activeItem, navItems])
 
   return (
     <ThemeProvider
