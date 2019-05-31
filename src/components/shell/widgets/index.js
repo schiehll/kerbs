@@ -9,18 +9,25 @@ import * as S from './styles'
 dayjs.extend(relativeTime)
 
 const Widgets = ({ widgets, ...props }) => {
+  if (widgets.length === 0) {
+    return (
+      <Grid {...props}>
+        {[
+          <S.Widget>
+            <S.Content>
+              <S.EmptyState>
+                <FiXSquare />
+                Nothing found
+              </S.EmptyState>
+            </S.Content>
+          </S.Widget>
+        ]}
+      </Grid>
+    )
+  }
+
   return (
     <Grid {...props}>
-      {widgets.length === 0 && (
-        <S.Widget>
-          <S.Content>
-            <S.EmptyState>
-              <FiXSquare />
-              Nothing found
-            </S.EmptyState>
-          </S.Content>
-        </S.Widget>
-      )}
       {widgets.map(({ kerb: Kerb, id, stats }) => {
         return (
           <S.Widget key={id}>
