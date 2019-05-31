@@ -8,19 +8,19 @@ import * as S from './styles'
 
 dayjs.extend(relativeTime)
 
-const Widgets = ({ widgets, ...props }) => {
-  if (widgets.length === 0) {
+const KerbsList = ({ kerbs, ...props }) => {
+  if (kerbs.length === 0) {
     return (
       <Grid {...props}>
         {[
-          <S.Widget>
+          <S.Kerbs>
             <S.Content>
               <S.EmptyState>
                 <FiXSquare />
                 Nothing found
               </S.EmptyState>
             </S.Content>
-          </S.Widget>
+          </S.Kerbs>
         ]}
       </Grid>
     )
@@ -28,20 +28,20 @@ const Widgets = ({ widgets, ...props }) => {
 
   return (
     <Grid {...props}>
-      {widgets.map(({ kerb: Kerb, id, stats }) => {
+      {kerbs.map(({ kerb: Kerb, id, stats }) => {
         return (
-          <S.Widget key={id}>
+          <S.Kerbs key={id}>
             <S.Content>
               <Kerb />
             </S.Content>
             <S.Footer>
               <FiClock /> Updated {dayjs(stats.mtime).from(dayjs())}
             </S.Footer>
-          </S.Widget>
+          </S.Kerbs>
         )
       })}
     </Grid>
   )
 }
 
-export default Widgets
+export default KerbsList

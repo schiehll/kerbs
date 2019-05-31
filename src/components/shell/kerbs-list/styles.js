@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { cssElevation } from 'css-elevation'
 
-export const Widget = styled.div`
+export const Kerbs = styled.div`
   ${({ theme: { spacing, colors, radius } }) => css`
     overflow: hidden;
     max-height: 100%;

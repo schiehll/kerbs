@@ -12,7 +12,7 @@ import { createBrowserHistory } from 'history'
 import queryString from 'query-string'
 import GlobalStyles from 'styles/global'
 import Search from 'components/shell/search'
-import Widgets from 'components/shell/widgets'
+import KerbsList from 'components/shell/kerbs-list'
 import Sidebar from 'components/shell/sidebar'
 import Loading from 'components/shell/loading'
 import Code from 'components/shell/code'
@@ -196,7 +196,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
                       onClick={toggleLightSwitch}
                     />
                   </S.Header>
-                  <Widgets widgets={kerbs} />
+                  <KerbsList kerbs={kerbs} />
                 </S.Content>
               </Fragment>
             )}
