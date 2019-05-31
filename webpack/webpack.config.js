@@ -48,7 +48,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: [resolve('src'), PATHS.docs],
+        exclude: /node_modules/,
         use: {
           loader: resolveNodeModule('babel-loader'),
           options: babelLoaderOptions
@@ -80,7 +80,7 @@ module.exports = {
   },
 
   resolve: {
-    modules: [resolve('node_modules'), resolve('src')],
+    modules: [resolve('node_modules'), resolve('src'), 'node_modules'],
     alias: {
       kerbs: PATHS.docs
     }
