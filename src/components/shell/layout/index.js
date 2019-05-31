@@ -30,6 +30,7 @@ import * as S from './styles'
 const history = createBrowserHistory()
 
 const Layout = ({ toggleLightSwitch, ...props }) => {
+  const searchInputRef = useRef(null)
   const sideSheetRef = useRef(null)
   const allKerbs = useRef([])
   const [kerbs, setKerbs] = useState([])
@@ -45,6 +46,10 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
   }
 
   const handleNavbarItemClick = itemId => {
+    if (searchInputRef.current) {
+      searchInputRef.current.value = ''
+    }
+
     setActiveItem(itemId)
     setKerbs(
       itemId === '__DASHBOARD__'
@@ -179,7 +184,7 @@ const Layout = ({ toggleLightSwitch, ...props }) => {
                 <S.SideSheetButton onClick={toggleSideSheet}>
                   <FiMenu />
                 </S.SideSheetButton>
-                <Search onChange={handleSearch} />
+                <Search ref={searchInputRef} onChange={handleSearch} />
                 <LightSwitch light={lightContext} onClick={toggleLightSwitch} />
               </S.Header>
               <Widgets widgets={kerbs} />
