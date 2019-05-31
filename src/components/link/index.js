@@ -10,7 +10,7 @@ const Link = ({ children, to, ...props }) => {
   return (
     <S.Link href={SVGData?.url || '#'} target="_blank" {...props}>
       {SVGData?.src && <S.Logo src={SVGData.src} alt={SVGData.name} />}
-      {children}
+      <span>{children}</span>
       <S.ExternalLinkIcon />
     </S.Link>
   )

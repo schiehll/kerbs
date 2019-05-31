@@ -4,7 +4,6 @@ import { FiExternalLink } from 'react-icons/fi'
 export const ExternalLinkIcon = styled(FiExternalLink)`
   ${({ theme: { spacing } }) => css`
     margin-left: ${spacing.base}px;
-    transition: all 0.3 ease;
   `}
 `
 
@@ -27,10 +26,19 @@ export const Link = styled.a`
     display: inline-flex;
     align-items: center;
 
+    ${ExternalLinkIcon} {
+      transition: all 0.3s ease;
+    }
+
     &:hover {
       ${ExternalLinkIcon} {
         transform: scale(1.2);
       }
+    }
+
+    > span {
+      flex: 1;
+      min-width: fit-content;
     }
   `}
 `

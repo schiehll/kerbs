@@ -28,6 +28,9 @@ export const StyledInput = styled.input`
     border: none;
     border-radius: ${radius}px;
     font-size: ${font.sizes.default}px;
+    appearance: textfield;
+    display: flex;
+    align-items: center;
 
     &::placeholder {
       font-size: ${font.sizes.default}px;

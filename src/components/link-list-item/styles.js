@@ -6,6 +6,10 @@ export const Link = styled.a`
   color: currentColor;
   cursor: pointer;
 
+  ${ExternalLinkIcon} {
+    transition: all 0.3s ease;
+  }
+
   &:hover {
     ${ExternalLinkIcon} {
       transform: scale(1.2);

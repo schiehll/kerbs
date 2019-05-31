@@ -28,5 +28,6 @@ export const Pre = styled.pre`
     padding: ${spacing.base}px;
     background-color: ${colors.gray[10]};
     overflow-x: auto;
+    overflow-y: visible;
   `}
 `
