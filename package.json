@@ -6,6 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build:cli": "babel cli --out-dir bin && chmod +x bin/index.js",
+    "init": "node bin init",
+    "dev": "node bin dev",
+    "build": "node bin build",
     "lint": "eslint src"
   },
   "devDependencies": {

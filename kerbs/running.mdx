@@ -1,0 +1,30 @@
+import Link from 'components/link'
+
+export const meta = {
+  title: 'Running',
+  order: 2
+}
+
+# Running
+
+You can run the development server while working on it, and then the build script if for some reason you had to modify files in the `cli` folder.
+
+## dev
+
+To run the development server, you can just use its own CLI:
+
+```bash
+$ yarn dev
+```
+
+If you modify files inside the `webpack` folder, you need to restart the server.
+
+## build
+
+To build the CLI, you can run the following:
+
+```bash
+$ yarn build:cli
+```
+
+It will just compile the files in the `cli` folder with babel, putting the compiled files in the `bin` folder.

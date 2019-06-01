@@ -1,0 +1,248 @@
+import FileTree from 'components/file-tree'
+
+export const meta = {
+  title: 'File Structure',
+  order: 4
+}
+
+# File Structure
+
+<FileTree
+  paths={[
+    {
+      name: 'src',
+      description: 'Here we have the code for the react app that powers Kerbs.',
+      children: [
+        {
+          name: 'assets',
+          description: 'Static assets',
+          children: [
+            {
+              name: 'SVGLogos.json',
+              description: (
+                <>
+                  This contains the data from svgpron.
+                  <div>
+                    You should not modify this files directly, as it's generated
+                    in build time
+                  </div>
+                </>
+              )
+            }
+          ]
+        },
+        {
+          name: 'components',
+          description: (
+            <>
+              All react components lives here.
+              <div>Each component have an index and a syles file.</div>
+              <div>
+                Styles files are the only files that should have
+                styled-components.
+              </div>
+            </>
+          ),
+          children: [
+            {
+              name: 'shell',
+              description: (
+                <>
+                  This contains the components that compounds the Kebs app.
+                  <div>
+                    The other componets outside this folder can be imported
+                    inside the mdx files in the docs.
+                  </div>
+                </>
+              ),
+              children: []
+            }
+          ]
+        },
+        {
+          name: 'styles',
+          description: 'Some styles utils and global styles.',
+          children: [
+            {
+              name: 'global.js',
+              description: 'The global styles.'
+            },
+            {
+              name: 'media.js',
+              description:
+                'The media utils that we use to make the app responsive.'
+            },
+            {
+              name: 'theme.js',
+              description:
+                'Here we have variables used to keep the style consistent throughout the whole app.'
+            }
+          ]
+        },
+        {
+          name: 'templates',
+          description: (
+            <>
+              Here lives the templates that are used as base to generate the
+              initial documentation.
+              <div>
+                In the future we may have more than one template, but for now
+                there's only one.
+              </div>
+            </>
+          ),
+          children: [
+            {
+              name: 'default',
+              description: 'The default template',
+              children: []
+            }
+          ]
+        },
+        {
+          name: 'utils',
+          description: 'The name is auto explanatory.',
+          children: [
+            {
+              name: 'hooks',
+              description:
+                'Hooks that are used throughout the whole app should live here.',
+              children: [
+                {
+                  name: 'useDebounce.js',
+                  description: 'A hook to use debounced values.'
+                },
+                {
+                  name: 'useSVGLogo.js',
+                  description: 'A hook to get the data from svgporn.'
+                }
+              ]
+            },
+            {
+              name: 'getKerbs.js',
+              description: (
+                <>
+                  Here's where the magic happens.
+                  <div>
+                    We are using the preval babel plugin to get the
+                    documentation files and its contents.
+                  </div>
+                </>
+              )
+            }
+          ]
+        },
+        {
+          name: 'index.html',
+          description: 'The html template file.'
+        }
+      ]
+    },
+    {
+      name: 'webpack',
+      description: 'Here is where the bundle configuration lives.',
+      children: [
+        {
+          name: 'addDependencyLoader.js',
+          description:
+            'This file is a webpack loader that help us to recompile the dev server when something change in the users documentation folder.'
+        },
+        {
+          name: 'paths.js',
+          description: 'Auto explanatory name.'
+        },
+        {
+          name: 'webpack.config.js',
+          description: 'The webpack configuration.'
+        },
+        {
+          name: 'webpack.dev.js',
+          description:
+            'The webpack extended with some development specific configs.'
+        },
+        {
+          name: 'webpackDevServerUtils.js',
+          description:
+            'This file was extracted from the react-dev-utils package (from CRA), and we made some modifications to fit our needs.'
+        }
+      ]
+    },
+    {
+      name: 'kerbs',
+      description: 'Where the files to this documentation lives.',
+      children: []
+    },
+    {
+      name: 'cli',
+      description:
+        'The code for the CLI that is executed in userland is all here.',
+      children: [
+        {
+          name: '.babelrc',
+          description: 'Our babel configuration to files inside this folder.'
+        },
+        {
+          name: 'build.js',
+          description:
+            'The build script code that generate the production ready documentation.'
+        },
+        {
+          name: 'dev.js',
+          description: 'The dev script code that starts the development server.'
+        },
+        {
+          name: 'init.js',
+          description:
+            'The init script code that asks for the project name and generate the initial files.'
+        },
+        {
+          name: 'loadSVGLogos.js',
+          description: (
+            <>
+              Here we are getting the data from the svgporn repo and saving it
+              inside the assets folder.
+              <div>We use it in both, the dev and build commands.</div>
+            </>
+          )
+        }
+      ]
+    },
+    {
+      name: 'bin',
+      description: (
+        <>
+          The same code we have in teh cli folder, but compiled by babel.
+          <div>
+            You should not modify this files directly, as it's generated by
+            running the build:cli script.
+          </div>
+        </>
+      ),
+      children: []
+    },
+    {
+      name: '.eslint',
+      description: 'Our eslint configuration.'
+    },
+    {
+      name: '.gitignore',
+      description: 'A list of files and folders that should be ignored by git.'
+    },
+    {
+      name: '.huskyrc.json',
+      description: 'The scripts we run on git hooks.'
+    },
+    {
+      name: '.lintstagedrc',
+      description: 'The scripts we run against the staged files.'
+    },
+    {
+      name: '.prettierrc',
+      description: 'Our prettier config.'
+    },
+    {
+      name: 'package.json',
+      description: 'Where we list our dependencies and set some scripts.'
+    }
+  ]}
+/>

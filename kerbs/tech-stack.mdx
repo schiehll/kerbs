@@ -1,0 +1,71 @@
+import List from 'components/list'
+import LinkListItem from 'components/link-list-item'
+
+export const meta = {
+  title: 'Tech stack',
+  order: 5
+}
+
+# Tech Stack
+
+<List>
+  <LinkListItem
+    to="git"
+    description="For tracking changes in our source code during development"
+  />
+  <LinkListItem
+    to="react"
+    description="To build everything while being happy doing it"
+  />
+  <LinkListItem to="javascript" name="JS" description="Of course" />
+  <LinkListItem
+    to="github"
+    name="mdx"
+    href="https://github.com/mdx-js/mdx"
+    description="What make it all possible"
+  />
+  <LinkListItem
+    to="prettier"
+    description="To help us to avoid silly discussion in PR reviews"
+  />
+  <LinkListItem
+    to="github"
+    name="commander"
+    href="https://github.com/tj/commander.js"
+    description="To build our CLI"
+  />
+  <LinkListItem
+    to="github"
+    name="shelljs"
+    href="https://github.com/shelljs/shelljs"
+    description="To execute our CLI commands"
+  />
+  <LinkListItem to="webpack" description="To bundle our modules" />
+  <LinkListItem
+    to="eslint"
+    description="To try to prevent us to add too many bugs in the code"
+  />
+  <LinkListItem
+    to="babel"
+    description="To use next generation JavaScript, today"
+  />
+  <LinkListItem
+    to="github"
+    name="styled-components"
+    href="https://github.com/styled-components/styled-components"
+    description="To write our styles"
+  />
+  <LinkListItem
+    to="github"
+    name="dayjs"
+    href="https://github.com/iamkun/dayjs"
+    description="To show the last updated time"
+  />
+  <LinkListItem to="yarn" description="To manage our dependencies" />
+  <LinkListItem
+    to="github"
+    name="svgporn"
+    href="https://github.com/gilbarbara/logos"
+    description="To get logos and links of widely known techs"
+  />
+</List>

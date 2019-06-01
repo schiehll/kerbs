@@ -1,1 +1,1 @@
-export default { name: "Unnamed Project" }
+export default { name: "Kerbs" }
