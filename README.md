@@ -4,6 +4,12 @@
 
 [![version](https://img.shields.io/npm/v/@schiehll/kerbs.svg?style=flat-square)](http://npm.im/@schiehll/kerbs)
 
+## Demo
+
+Here's a live demo of how Kerbs looks like, containing the documentation of Kerbs itself:
+
+https://kerbs.netlify.com/
+
 ## The problem
 
 Sometimes you are not the one starting the project from scratch, and it takes some time to understand how everything is glued together and all the reasoning behind the decisions made by the ones before you.
@@ -14,9 +20,9 @@ Also, how many open source contributions have ceased to occur because someone wi
 
 ## This solution
 
-Kerbs try to make the proccess of onboard people to new projects reproduceble, evolvable and faster.
+Kerbs try to make the process of onboard people intoto new projects easier to reproduce and evolve.
 
-It does it by providing a simple and easy way of documenting your project, things like where this file goes and why, which's the tech stack, how to install and run it, etc.
+It does it by providing a simple and fast way of documenting your project, things like where this file goes and why, which's the tech stack, how to install and run it, etc.
 
 ## Installation
 
@@ -47,7 +53,7 @@ kerbs init
 
 ### dev
 
-`dev` will start a development server that will update in realtime while your edit your docs.
+`dev` will start a development server that will update in realtime while you edit your docs.
 
 ```bash
 kerbs dev
@@ -61,7 +67,7 @@ kerbs dev
 kerbs build
 ```
 
-You can then deploy this folder wherever you prefer. We recomend [Netlify](https://www.netlify.com/) as it's free and is as simple as drag and drop your `kerbs_public` folder and be done with it.
+You can then deploy this folder wherever you prefer. We recomend [Netlify](https://www.netlify.com/) as it's free and as simple as drag and drop your `kerbs_public` folder and be done with it.
 
 ## Writing documentation
 
@@ -84,7 +90,7 @@ The `Link` component uses [svgporn](https://github.com/gilbarbara/logos) data to
 Here's a example:
 
 ```mdx
-// You can import some components from Kerbs like below
+// You can import built-in Kerbs components like below
 // You can see all the components that Kerbs have built-in in this repo's `src/components` folder
 
 import Link from 'components/link'
@@ -120,7 +126,7 @@ It uses the `Link` component under the hood, so it will also get the logo and li
 Here's a example:
 
 ```mdx
-// You can import some components from Kerbs like below
+// You can import built-in Kerbs components like below
 // You can see all the components that Kerbs have built-in in this repo's `src/components` folder
 
 import List from 'components/list'
@@ -157,7 +163,7 @@ One of Kerbs most useful components is the `FileTree` one, which gives yout the 
 Here's a example of how it would looks like:
 
 ```mdx
-// You can import some components from Kerbs like below
+// You can import built-in Kerbs components like below
 // You can see all the components that Kerbs have built-in in this repo's `src/components` folder
 
 import FileTree from 'components/file-tree'
@@ -173,10 +179,10 @@ export const meta = {
 
 # File Structure
 
-// paths here accepts a array of objects.
-// Each item in the array is a folder or a file.
-// If it have a children attribute it's considered a folder, otherwise it's a file.
-// If you want to show a folder without any children, just pass an empty array.
+// The paths prop accepts an array of objects.
+// Each item in the array is either, a folder or a file.
+// If it have a children it's considered a folder, otherwise it's a file.
+// If you want to show a folder without any children, just pass an empty array to children.
 
 <FileTree
   paths={[
@@ -238,7 +244,7 @@ export const meta = {
 
 ## Creating custom components
 
-You aren't limited to the built-in components, you can create your owns if you like to. Just make sure to use [styled-components](https://www.styled-components.com/) to be able to access the Kerbs theme variables so it will looks nice in both, light and dark mode.
+You aren't limited to the built-in components, you can create your owns if you like to. Just make sure to use [styled-components](https://www.styled-components.com/) to be able to access the Kerbs' theme variables so it will looks nice in both, light and dark mode.
 
 Here's a example of a custom button component:
 
