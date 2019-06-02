@@ -2,6 +2,8 @@
 
 > Onboard new devs into your project
 
+[![version](https://img.shields.io/npm/v/@schiehll/kerbs.svg?style=flat-square)](http://npm.im/@schiehll/kerbs)
+
 ## The problem
 
 Sometimes you are not the one starting the project from scratch, and it takes some time to understand how everything is glued together and all the reasoning behind the decisions made by the ones before you.
