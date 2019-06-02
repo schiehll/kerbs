@@ -20,7 +20,7 @@ Also, how many open source contributions have ceased to occur because someone wi
 
 ## This solution
 
-Kerbs try to make the process of onboard people intoto new projects easier to reproduce and evolve.
+Kerbs try to make the process of onboarding people into new projects easier to reproduce and evolve.
 
 It does it by providing a simple and fast way of documenting your project, things like where this file goes and why, which's the tech stack, how to install and run it, etc.
 
@@ -283,6 +283,6 @@ Some open source projects have a `CONTRIBUTING.md` file which usually doesn't he
 
 In most companies I've worked we usually are onboarded by someone that worked in the project long enought to be able to explain it in their own words. Then you are on your own and will figure it out after some time.
 
-There are companies with better onboard process of course, but we need a solution simple and easy enought to be used more often.
+There are companies with better onboarding process of course, but we need a solution simple and easy enought to be used more often.
 
 We could do it with existing documentation solutions, like [docz](https://github.com/pedronauck/docz) or [docusaurus](https://docusaurus.io/) for example, but virtually nobody does, so I think having something dadicated to only project onboarding will help people to actually do it.
