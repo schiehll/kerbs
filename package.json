@@ -1,6 +1,6 @@
 {
   "name": "@schiehll/kerbs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Onboard new devs into your project",
   "author": "Reinaldo Schiehll <rn.schiehll@gmail.com>",
   "main": "./bin/index.js",
