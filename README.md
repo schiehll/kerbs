@@ -277,6 +277,27 @@ export const meta = {
 <Button>My custom button</Button>
 ```
 
+## Extending the webpack config
+
+Kerbs comes with batteries included, so it will just works out of the box. But if you need some kind of custom configuration, it's possible.
+
+To extend Kerbs' webpack config, pass a `webpackConfig` object in the `.kerbsrc.js` file:
+
+```js
+import path from 'path'
+
+export default {
+  name: 'Your project name',
+  webpackConfig: {
+    resolve: {
+      modules: [path.resolve(__dirname, 'src')]
+    }
+  }
+}
+```
+
+The custom configuration will be merged with the original one using webpack-merge's [smart merging](https://github.com/survivejs/webpack-merge#smart-merging).
+
 ## Other solutions
 
 Some open source projects have a `CONTRIBUTING.md` file which usually doesn't help that much, but if someone put the work it could work. But still, it's limited to only markdown, without the components.
