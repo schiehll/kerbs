@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -16,8 +18,6 @@ var _enquirer = require("enquirer");
 var _chalk = _interopRequireDefault(require("chalk"));
 
 var _paths = _interopRequireDefault(require("../webpack/paths"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
   if (_fs.default.existsSync(_paths.default.config)) {

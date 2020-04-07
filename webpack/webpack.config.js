@@ -2,45 +2,43 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const path = require('path')
 const prism = require('@gridsome/remark-prismjs')
+const PATHS = require('./paths')
 
 const resolve = filePath => path.resolve(__dirname, '../', filePath)
-const resolveNodeModule = filePath => {
-  return path.resolve(__dirname, '../node_modules', filePath)
-}
 
 const babelLoaderOptions = {
   babelrc: false,
   presets: [
     [
-      resolveNodeModule('@babel/preset-env'),
+      '@babel/preset-env',
       {
-        modules: false
+        modules: false,
+        targets: {
+          esmodules: true
+        }
       }
     ],
-    resolveNodeModule('@babel/preset-react')
+    '@babel/preset-react'
   ],
   plugins: [
-    resolveNodeModule('babel-plugin-preval'),
-    resolveNodeModule('@babel/plugin-transform-runtime'),
-    resolveNodeModule('@babel/plugin-proposal-optional-chaining'),
-    resolveNodeModule('@babel/plugin-syntax-dynamic-import')
+    '@babel/plugin-transform-runtime',
+    'babel-plugin-preval',
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-syntax-dynamic-import'
   ],
   env: {
     production: {
-      plugins: [
-        resolveNodeModule('babel-plugin-transform-react-remove-prop-types')
-      ]
+      plugins: ['babel-plugin-transform-react-remove-prop-types']
     }
   }
 }
 
 require('@babel/register')({
   babelrc: false,
-  presets: [path.resolve(__dirname, '../node_modules/@babel/preset-env')],
+  presets: ['@babel/preset-env'],
   plugins: babelLoaderOptions.plugins
 })
 
-const PATHS = require('./paths')
 const kerbsConfig = require(PATHS.config).default
 
 const config = {
@@ -57,9 +55,9 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules\/(?!@schiehll\/kerbs)/],
         use: {
-          loader: resolveNodeModule('babel-loader'),
+          loader: 'babel-loader',
           options: babelLoaderOptions
         }
       },
@@ -67,11 +65,11 @@ const config = {
         test: /\.mdx$/,
         use: [
           {
-            loader: resolveNodeModule('babel-loader'),
+            loader: 'babel-loader',
             options: babelLoaderOptions
           },
           {
-            loader: resolveNodeModule('@mdx-js/loader'),
+            loader: '@mdx-js/loader',
             options: {
               remarkPlugins: [prism]
             }
@@ -80,10 +78,7 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use: [
-          resolveNodeModule('style-loader'),
-          resolveNodeModule('css-loader')
-        ]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -17,12 +19,10 @@ var _paths = _interopRequireDefault(require("../webpack/paths"));
 
 var _loadSVGLogos = _interopRequireDefault(require("./loadSVGLogos"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var _default = async () => {
   await (0, _loadSVGLogos.default)();
 
-  const webpackExec = _path.default.resolve(__dirname, '../node_modules/.bin/webpack');
+  const webpackExec = _path.default.resolve(process.cwd(), 'node_modules/.bin/webpack');
 
   const webpackConfig = _path.default.resolve(__dirname, '../webpack/webpack.config.js');
 
@@ -36,6 +36,8 @@ var _default = async () => {
     _fs.default.writeFileSync(`${_paths.default.public}/_redirects`, '/* /index.html 200');
 
     console.log(_chalk.default.green(`Successfully built kerbs! Check ${_chalk.default.bold(_paths.default.public)} folder.`));
+  } else {
+    console.log(_chalk.default.red(`Sorry! Something went wrong.`));
   }
 };
 

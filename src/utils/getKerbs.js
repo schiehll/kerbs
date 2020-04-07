@@ -4,11 +4,12 @@ import slugify from '@sindresorhus/slugify'
 const allKerbs = preval`
   const fs = require('fs')
   const path = require('path')
+  const PATHS = require('../../webpack/paths')
+
   require('@babel/register')({
     babelrc: false,
-    presets: [path.resolve(__dirname, '../../node_modules/@babel/preset-env')]
+    presets: ['@babel/preset-env']
   })
-  const PATHS = require('../../webpack/paths')
 
   const kerbs = fs.readdirSync(PATHS.docs)
 
@@ -26,11 +27,12 @@ const allKerbs = preval`
 export const config = preval`
   const fs = require('fs')
   const path = require('path')
+  const PATHS = require('../../webpack/paths')
+
   require('@babel/register')({
     babelrc: false,
-    presets: [path.resolve(__dirname, '../../node_modules/@babel/preset-env')]
+    presets: ['@babel/preset-env']
   })
-  const PATHS = require('../../webpack/paths')
 
   module.exports = require(PATHS.config)
 `

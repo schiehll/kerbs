@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-var _commander = _interopRequireDefault(require("commander"));
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _commander = _interopRequireDefault(require("commander"));
 
 _commander.default.command('init').description('initialize kerbs').action(() => {
   const init = require('./init').default;

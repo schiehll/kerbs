@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -18,8 +20,6 @@ var _webpackDevServerUtils = require("../webpack/webpackDevServerUtils");
 var _webpack2 = _interopRequireDefault(require("../webpack/webpack.dev"));
 
 var _loadSVGLogos = _interopRequireDefault(require("./loadSVGLogos"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = async () => {
   await (0, _loadSVGLogos.default)();

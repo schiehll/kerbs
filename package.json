@@ -11,7 +11,7 @@
     "url": "https://github.com/schiehll/kerbs.git"
   },
   "scripts": {
-    "build:cli": "babel cli --out-dir bin && chmod +x bin/index.js",
+    "build:cli": "rm -rf bind/* && babel cli --out-dir bin && chmod +x bin/index.js",
     "init": "node bin init",
     "dev": "node bin dev",
     "build": "node bin build",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.9.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
@@ -27,14 +28,15 @@
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1"
   },
+  "browserslist": "> 0.25%, not dead",
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.9.2",
     "@gridsome/remark-prismjs": "^0.0.6",
     "@mdx-js/loader": "^1.0.20",
     "@mdx-js/react": "^1.0.20",
@@ -70,7 +72,7 @@
     "styled-media-query": "^2.1.1",
     "url": "^0.11.0",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.4.1",
     "webpack-merge": "^4.2.1"
   }

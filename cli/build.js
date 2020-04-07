@@ -8,7 +8,7 @@ import loadSVGLogos from './loadSVGLogos'
 export default async () => {
   await loadSVGLogos()
 
-  const webpackExec = path.resolve(__dirname, '../node_modules/.bin/webpack')
+  const webpackExec = path.resolve(process.cwd(), 'node_modules/.bin/webpack')
   const webpackConfig = path.resolve(__dirname, '../webpack/webpack.config.js')
 
   console.log(chalk.cyan('Building kerbs...'))
@@ -26,5 +26,7 @@ export default async () => {
         `Successfully built kerbs! Check ${chalk.bold(PATHS.public)} folder.`
       )
     )
+  } else {
+    console.log(chalk.red(`Sorry! Something went wrong.`))
   }
 }
