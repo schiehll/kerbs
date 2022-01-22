@@ -55,7 +55,7 @@
     "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "nanoid": "^2.0.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "open-color": "^1.6.3",
     "portfinder": "^1.0.20",
     "prism-themes": "^1.1.0",
