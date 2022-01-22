@@ -54,7 +54,7 @@
     "enquirer": "^2.3.0",
     "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
-    "nanoid": "^2.0.3",
+    "nanoid": "^3.1.31",
     "node-fetch": "^2.6.0",
     "open-color": "^1.6.3",
     "portfinder": "^1.0.20",
